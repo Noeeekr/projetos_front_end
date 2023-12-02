@@ -54,7 +54,7 @@ body {
     border-radius: 8px;
 
     overflow: hidden;
-    opacity: 0;
+    opacity: 1;
     
     transition: opacity 250ms linear;
 }
@@ -70,9 +70,6 @@ body {
     border-radius: 8px;
     box-sizing: border-box;
         border: solid 2px rgba(241, 241, 241, 0.04);
-}
-.cards-holder .card:hover::before {
-    opacity: 1;
 }
 .cards-holder .card > .card-content {
     position: relative;
@@ -99,14 +96,11 @@ body {
     width: 100%;
     height: 100%;
 
-    opacity: 0;
+    opacity: 1;
     
     transition: opacity 250ms linear;
 
     z-index: 2;
-}
-.cards-holder .card > .card-content:hover::before {
-    opacity: 1;
 }
 .cards-holder .card > .card-content > .card-inner-content {
     display: flex;
