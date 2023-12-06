@@ -18,7 +18,7 @@ const cardsHoverEffect = (event) => {
 
 for (const card of document.querySelectorAll(".card")) {
     let randomColor = `${Math.floor(Math.random() * 210) + 40},${Math.floor(Math.random() * 210) + 40},${Math.floor(Math.random() * 210) + 40}`
-    card.style.setProperty("--random-color", `rgb(${randomColor},${0.3})`);
+    card.style.setProperty("--random-color", `rgb(${randomColor},${0.7})`);
     card.style.setProperty("--random-color-translucent", `rgba(${randomColor},${0.09})`);
 };
 
