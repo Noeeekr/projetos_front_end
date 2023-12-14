@@ -1,98 +1,217 @@
 @charset "UTF-8";
 
 body {
-    background-color: rgb(1,3,14);
+    background-color: rgb(22, 26, 48);
+
+    color: white;
 
     margin: 0px;
 }
 .content-holder .taskMaker {
     text-align: center;
-    color: white;
 
     margin: 100px 20px 20px 20px;
 }
-.taskMaker .taskMaker-title {
+.introduction .introduction-title {
     font-family: Verdana;
     font-size: 2em;
 
     margin: 10px 0px;
 }
-.taskMaker .taskMaker-description {
+.introduction .introduction-description {
     font-family: Tahoma;
 }
-.taskMaker .taskMaker-createButton {
+.introduction .introduction-createButton {
     position: relative;
 
+    background-color: rgb(240, 236, 229);
+    width: max(120px,55%);
+    max-width: 200px;
+    border: none;
     box-sizing: border-box;
         padding: 15px 20px;
-    width: max(100px,50%);
-        max-width: 200px;
-    border: none;
     border-radius: 30px;
     
-    transition: background-color 200ms linear, color 200ms linear;
+    font-family: Verdana;
+    font-weight: bold;
+    font-size: 16px;
+    letter-spacing: 1.1px;
+
+    transition: background-color 100ms linear;
 
     overflow: hidden;
 
     margin: 20px 0px 0px 0px;
 }
-.taskMaker .taskMaker-createButton::before {
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    content: "";
-    background-image: linear-gradient(35deg,yellow 0%,red);
-    width: 200%;
-    height: 100%;
-
-    transform: translateX(0%);
-
-    transition: transform 170ms linear;
-
-    z-index: 2;
+.introduction .introduction-createButton:hover {
+    background-color: rgb(182, 187, 196);
 }
-.taskMaker .taskMaker-createButton:hover::before {
-    transform: translateX(-50%);
-}
-.taskMaker .taskMaker-createButton::after {
-    position: absolute;
-    top: 0;
-    left: 0;
-    
-    content: "Create Task";
-    font-size: 17px;
-    font-family: Verdana;
-    font-weight: bold;
-    letter-spacing: 1.1px;
-    color: rgb(30,30,30);
 
-    display: flex; 
-    align-items: center;
-    justify-content: center;
+.taskMaker .taskCreatorWrapper {
+    position: relative;
+
+    background-color: rgb(49, 48, 77);
+    width: 70%;
+        max-width: 650px;
+        min-width: 400px;
+    height: 0px;
+    border-radius: 14px;
+
+    overflow: hidden;
+    pointer-events: none;
+
+    transition: height 400ms ease-in-out;
+
+    margin: 40px auto 20px auto;
+}
+.taskMaker .taskCreatorWrapperActive {
+    height: 360px;
+    pointer-events: all;
+}
+/* Since .taskCreator has no height and overflow hidden this will make it appear*/
+.taskMaker .taskCreator {
+    position: absolute;
+
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
 
     width: 100%;
-    height: 100%;
+    width: 100%;
+        max-width: 650px;
+        min-width: 400px;
+    height: 360px;
 
-    z-index: 3;
+    box-sizing: border-box;
+        padding: 30px 20px;
+}
+.taskCreator .taskCreator-nameInput {    
+    position: relative;
 
-    transition: color 170ms linear;
+    background-color: rgb(79, 78, 107);
+    width: 90%;
+        min-width: 300px;
+    height: 40px;
+    box-sizing: border-box;
+        padding: 5px 5px 5px 15px;
+    border: 2px solid rgb(22, 26, 48);
+    border-radius: 6px;
+    outline: none;
+
+    font-size: 16px;
+
+    flex: 0 0 basis;
 }
-.taskMaker .taskMaker-createButton:hover::after {
-    color: black;
+.taskCreator .taskCreator-nameInput::-webkit-input-placeholder {    
+    color: rgba(0,0,0,0.6);
 }
+.taskCreator .taskCreator-nameInput::-moz-placeholder {
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-nameInput::-ms-input-placeholder { 
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-nameInput:-moz-placeholder {
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-priorityInputWrapper {
+    align-self: flex-start;
+}
+.taskCreator-priorityInputWrapper label {
+    font-family: Verdana;
+    font-weight: bold;
+
+    margin: 0px 10px;
+}
+.taskCreator #taskCreator-priorityInput {
+    background-color: rgb(79, 78, 107);
+    width: 60%;
+        min-width: 150px;
+    height: 40px;
+    box-sizing: border-box;
+        padding: 5px 5px 5px 15px;
+    border: 2px solid rgb(22, 26, 48);
+    border-radius: 6px;
+    outline: none;;
+
+    flex: 1 0 basis;
+}
+.taskCreator #taskCreator-priorityInput option {
+
+}
+.taskCreator .taskCreator-descriptionInput {
+    background-color: rgb(79, 78, 107);
+    width: 90%;
+    height: 160px;
+
+    box-sizing: border-box;
+        padding: 5px 5px 5px 15px;
+    border: 2px solid rgb(22, 26, 48);
+    border-radius: 6px;
+    outline: none;
+
+    resize: none;
+
+    font-size: 16px;
+
+    flex: 0 0 basis;
+}
+.taskCreator .taskCreator-descriptionInput::-webkit-input-placeholder {    
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-descriptionInput::-moz-placeholder {
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-descriptionInput::-ms-input-placeholder {
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-descriptionInput:-moz-placeholder {
+    color: rgba(0,0,0,0.6);
+}
+.taskCreator .taskCreator-createButton {
+    position: absolute;
+    right: 10%;
+    bottom: 20px;
+
+    background-color: rgb(149, 148, 197);
+    width: 40%;
+
+    box-sizing: border-box;
+        padding: 5px 5px 5px 15px;
+    border: 2px solid rgb(22, 26, 48);
+    border-radius: 6px;
+    outline: none;
+
+    font-weight: bold;
+    font-size: 15px;
+
+    flex: 0 0 basis;
+    align-self: flex-end;
+}
+/*
+<div class="taskMaker-taskCreator">
+    <input type="text" class="taskCreator-nameInput">
+    <select id="taskCreator-nameInput">
+        <option value="Minima">Select an option</option>
+        <option value="Minima">Minima</option>
+        <option value="Media">Media</option>
+        <option value="Alta">Alta</option>
+    </select>
+    <textarea cols="50" rows="10"></textarea>
+</div>
+*/
 .taskViewer {
     position: relative;
 
     width: 90%;
-    min-height: 100px;
+        max-width: 1200px;
+        min-height: 100px;
     box-sizing: border-box;
         padding: 30px 0px 0px 40px;
     border-top: solid 2px white;
     border-right: solid 2px white;
     border-radius: 0px 20px 0px 0px;
-
-    color: white;
 
     margin: 50px auto;
 }
@@ -101,12 +220,12 @@ body {
     top: -61px;
     left: 0px;
 
-    background-color: rgb(1,3,14);
+    background-color: rgb(22, 26, 48);
     padding: 0px 20px;
 
     font-family: Tahoma;
-    font-weight: normal;
-    font-size: 20px;   
+    font-weight: bold;
+    font-size: 20px;
 }
 .taskViewer .taskHolder {
     display: flex;
@@ -114,8 +233,10 @@ body {
     gap: 20px;
 }
 .taskHolder > .randomTask {
-    background-image: linear-gradient(35deg,blue 5%,red);
+    background-color: rgb(49, 48, 77);
     width: 95%;
     height: 200px;
     border-radius: 15px;
 }
+
+

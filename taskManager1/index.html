@@ -9,15 +9,31 @@
 <body>
     <div class="content-holder">
         <section class="taskMaker">
-            <h2 class="taskMaker-title">Task Manager</h2>
-            <p class="taskMaker-description">You literally just have to press create task to start creating a task</p>
-            <button class="taskMaker-createButton">Create task</button>
+            <div class="introduction"> 
+                <h2 class="introduction-title">Task Manager</h2>
+                <p class="introduction-description">You literally just have to press create task to start creating a task</p>
+                <button class="introduction-createButton">Create task</button>
+            </div>
+            <div class="taskCreatorWrapper">
+                <div class="taskCreator">
+                    <input placeholder="Task name" type="text" class="taskCreator-nameInput">
+                    <textarea placeholder="Task description" class="taskCreator-descriptionInput"></textarea>
+                    <div class="taskCreator-priorityInputWrapper">
+                        <label for="taskCreator-priorityInput">Priority:</label>
+                        <select id="taskCreator-priorityInput">
+                            <option value="Minima">Minima</option>
+                            <option value="Media">Media</option>
+                            <option value="Alta">Alta</option>
+                        </select>
+                    </div>
+                    <button name="taskCreator-createButton" class="taskCreator-createButton">Create task</button>
+                </div>
+            </div>
         </section>
+
         <section class="taskViewer">
             <h6 class="taskViewer-title">Your tasks</h6>
             <div class="taskHolder">
-                <div class="randomTask"></div>
-                <div class="randomTask"></div>
                 <div class="randomTask"></div>
             </div>
         </section>
