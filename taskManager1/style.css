@@ -1,16 +1,77 @@
 @charset "UTF-8";
 
 body {
+    position: relative;
+
     background-color: rgb(22, 26, 48);
+    box-sizing: border-box;
+    padding: 0px 20px 20px 20px;
 
-    color: white;
-
+    color: rgb(220,220,220);
+    
     margin: 0px;
 }
+.content-holder {    
+    position: relative;
+
+    width: 100%;
+        max-width: 1200px;
+        min-height: 100px;
+    padding-top: 100px;
+
+
+    margin: 0px auto;
+}
+.content-holder .warningPopUp {
+    position: absolute;
+    top: 30px;
+    right: 0px;
+    
+    background-color: rgba(0,0,0,0.7);
+    width: 90%;
+        max-width: 260px;
+    height: auto;
+    padding: 25px;
+    border-radius: 4px;
+
+    opacity: 0%;
+    backdrop-filter: blur(21px);
+
+    font-family: Arial;
+
+    pointer-events: none;
+
+    margin: 0px;
+
+    transition: opacity 100ms linear;
+}
+.content-holder .warningPopUp:has(.popUp-closeButton.active) { 
+    opacity: 100%;
+    pointer-events: all;
+}
+/* this basically unalives the popup everytime it doesn't have active class*/
+.content-holder .warningPopUp .popUp-title {
+    margin: 0px 0px 10px 0px;
+}
+.content-holder .warningPopUp .popUp-descriptionWrapper {
+    padding-left: 10px;
+    border-left: solid 1px rgb(220,220,220);
+}
+.content-holder .warningPopUp .popUp-paragraph {
+    margin: 0px 0px 10px 0px;
+}
+.content-holder .warningPopUp .popUp-closeButton { 
+    text-decoration: underline;
+    cursor: pointer;
+
+    margin: 0px 0px 10px 0px;
+}
+
+
 .content-holder .taskMaker {
     text-align: center;
 
-    margin: 100px 20px 20px 20px;
+    margin: 0px 20px 20px 20px;
 }
 .introduction .introduction-title {
     font-family: Verdana;
@@ -24,7 +85,7 @@ body {
 .introduction .introduction-createButton {
     position: relative;
 
-    background-color: rgb(240, 236, 229);
+    background-color: rgb(220,220,220);
     width: max(120px,55%);
     max-width: 200px;
     border: none;
@@ -44,10 +105,10 @@ body {
     margin: 20px 0px 0px 0px;
 }
 .introduction .introduction-createButton:hover {
-    background-color: rgb(182, 187, 196);
+    background-color: rgb(200,200,200);
 }
 
-.taskMaker .taskCreatorWrapper {
+.taskMaker .taskFormWrapper {
     position: relative;
 
     background-color: rgb(49, 48, 77);
@@ -64,12 +125,12 @@ body {
 
     margin: 40px auto 20px auto;
 }
-.taskMaker .taskCreatorWrapperActive {
+.taskMaker .taskFormWrapperActive {
     height: 360px;
     pointer-events: all;
 }
-/* Since .taskCreator has no height and overflow hidden this will make it appear*/
-.taskMaker .taskCreator {
+/* Since .taskForm has no height and overflow hidden this will make it appear*/
+.taskMaker .taskForm {
     position: absolute;
 
     display: flex;
@@ -86,7 +147,7 @@ body {
     box-sizing: border-box;
         padding: 30px 20px;
 }
-.taskCreator .taskCreator-nameInput {    
+.taskForm .taskForm-nameInput {    
     position: relative;
 
     background-color: rgb(79, 78, 107);
@@ -103,28 +164,28 @@ body {
 
     flex: 0 0 basis;
 }
-.taskCreator .taskCreator-nameInput::-webkit-input-placeholder {    
+.taskForm .taskForm-nameInput::-webkit-input-placeholder {    
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-nameInput::-moz-placeholder {
+.taskForm .taskForm-nameInput::-moz-placeholder {
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-nameInput::-ms-input-placeholder { 
+.taskForm .taskForm-nameInput::-ms-input-placeholder { 
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-nameInput:-moz-placeholder {
+.taskForm .taskForm-nameInput:-moz-placeholder {
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-priorityInputWrapper {
+.taskForm .taskForm-priorityInputWrapper {
     align-self: flex-start;
 }
-.taskCreator-priorityInputWrapper label {
+.taskForm-priorityInputWrapper label {
     font-family: Verdana;
     font-weight: bold;
 
     margin: 0px 10px;
 }
-.taskCreator #taskCreator-priorityInput {
+.taskForm #taskForm-priorityInput {
     background-color: rgb(79, 78, 107);
     width: 60%;
         min-width: 150px;
@@ -137,10 +198,13 @@ body {
 
     flex: 1 0 basis;
 }
-.taskCreator #taskCreator-priorityInput option {
+.taskForm #taskForm-priorityInput option { 
+    color: white;
+    font-size: 16px;
 
+    border: none;
 }
-.taskCreator .taskCreator-descriptionInput {
+.taskForm .taskForm-descriptionInput {
     background-color: rgb(79, 78, 107);
     width: 90%;
     height: 160px;
@@ -157,26 +221,25 @@ body {
 
     flex: 0 0 basis;
 }
-.taskCreator .taskCreator-descriptionInput::-webkit-input-placeholder {    
+.taskForm .taskForm-descriptionInput::-webkit-input-placeholder {    
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-descriptionInput::-moz-placeholder {
+.taskForm .taskForm-descriptionInput::-moz-placeholder {
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-descriptionInput::-ms-input-placeholder {
+.taskForm .taskForm-descriptionInput::-ms-input-placeholder {
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-descriptionInput:-moz-placeholder {
+.taskForm .taskForm-descriptionInput:-moz-placeholder {
     color: rgba(0,0,0,0.6);
 }
-.taskCreator .taskCreator-createButton {
+.taskForm .taskForm-createButton {
     position: absolute;
     right: 10%;
     bottom: 20px;
 
     background-color: rgb(149, 148, 197);
     width: 40%;
-
     box-sizing: border-box;
         padding: 5px 5px 5px 15px;
     border: 2px solid rgb(22, 26, 48);
@@ -188,27 +251,22 @@ body {
 
     flex: 0 0 basis;
     align-self: flex-end;
+
+    transition: background 100ms linear;
 }
-/*
-<div class="taskMaker-taskCreator">
-    <input type="text" class="taskCreator-nameInput">
-    <select id="taskCreator-nameInput">
-        <option value="Minima">Select an option</option>
-        <option value="Minima">Minima</option>
-        <option value="Media">Media</option>
-        <option value="Alta">Alta</option>
-    </select>
-    <textarea cols="50" rows="10"></textarea>
-</div>
-*/
+.taskForm .taskForm-createButton:hover {
+    background-color: rgb(119, 118, 167);
+}
+
+
 .taskViewer {
     position: relative;
 
-    width: 90%;
+    width: 100%;
         max-width: 1200px;
         min-height: 100px;
     box-sizing: border-box;
-        padding: 30px 0px 0px 40px;
+        padding: 30px 0px 0px 0px;
     border-top: solid 2px white;
     border-right: solid 2px white;
     border-radius: 0px 20px 0px 0px;
@@ -217,7 +275,7 @@ body {
 }
 .taskViewer .taskViewer-title {
     position: absolute;
-    top: -61px;
+    top: -15px;
     left: 0px;
 
     background-color: rgb(22, 26, 48);
@@ -226,17 +284,37 @@ body {
     font-family: Tahoma;
     font-weight: bold;
     font-size: 20px;
+
+    margin: 0px;
 }
 .taskViewer .taskHolder {
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.taskHolder > .randomTask {
+.taskHolder > .task {
     background-color: rgb(49, 48, 77);
     width: 95%;
-    height: 200px;
+    height: auto;
     border-radius: 15px;
-}
+    box-sizing: border-box;
+        padding: 20px 20px;
 
+    font-family: Arial;
+
+    margin: 0px 20px 0px auto;
+}
+.task .task-title {
+    margin: 0px;
+}
+.task .task-priority {
+    text-align: center;
+
+    margin: 10px 0px;
+}
+.task .task-description {
+    color: white;
+
+    margin: 0px;
+}
 

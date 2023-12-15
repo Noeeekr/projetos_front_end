@@ -8,33 +8,45 @@
 </head>
 <body>
     <div class="content-holder">
+        <div class="warningPopUp">
+            <h4 class="popUp-title">Warning!</h4>
+            <div class="popUp-descriptionWrapper">
+                <p class="popUp-paragraph">Tasks fields are not correctly filled.</p>
+                <span id="warningPopUp-closeButton" class="popUp-closeButton">click here to close this window.</span>
+            </div>
+        </div>
+
         <section class="taskMaker">
             <div class="introduction"> 
                 <h2 class="introduction-title">Task Manager</h2>
                 <p class="introduction-description">You literally just have to press create task to start creating a task</p>
                 <button class="introduction-createButton">Create task</button>
             </div>
-            <div class="taskCreatorWrapper">
-                <div class="taskCreator">
-                    <input placeholder="Task name" type="text" class="taskCreator-nameInput">
-                    <textarea placeholder="Task description" class="taskCreator-descriptionInput"></textarea>
-                    <div class="taskCreator-priorityInputWrapper">
-                        <label for="taskCreator-priorityInput">Priority:</label>
-                        <select id="taskCreator-priorityInput">
+            <div class="taskFormWrapper">
+                <div class="taskForm">
+                    <input placeholder="Task name" type="text" class="taskForm-nameInput" name="taskForm-value">
+                    <textarea placeholder="Task description" class="taskForm-descriptionInput" name="taskForm-value"></textarea>
+                    <div class="taskForm-priorityInputWrapper">
+                        <label for="taskForm-priorityInput">Priority:</label>
+                        <select id="taskForm-priorityInput" name="taskForm-value">
                             <option value="Minima">Minima</option>
                             <option value="Media">Media</option>
                             <option value="Alta">Alta</option>
                         </select>
                     </div>
-                    <button name="taskCreator-createButton" class="taskCreator-createButton">Create task</button>
+                    <button id="taskForm-createButton" class="taskForm-createButton">Create task</button>
                 </div>
             </div>
         </section>
 
         <section class="taskViewer">
-            <h6 class="taskViewer-title">Your tasks</h6>
+            <h2 class="taskViewer-title">Your tasks</h2>
             <div class="taskHolder">
-                <div class="randomTask"></div>
+                <div class="task">
+                    <h3 class="task-title">Task</h3>
+                    <h4 class="task-priority">Maximum</h4>
+                    <p class="task-description">Task description goes brrrrrrrrrrrrrr bla bla bla Idk what to put here to be honest so I'll just say what happened to me today: .</p>
+                </div>
             </div>
         </section>
     </div>
