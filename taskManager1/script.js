@@ -36,22 +36,95 @@ function Task(arrayOfValues) {
 /* our object constructor function that makes new tasks*/
 function renderTaskOnTaskViewer(taskObject) {
     let task = document.createElement("div");
-        task.setAttribute("class","task");
+        task.className = "task";
+
+    let title = document.createElement("div");
+        title.className = "task-titleWrapper";
 
     let name = document.createElement("h3");
         name.textContent = taskObject.name;
-        name.setAttribute("class","task-title");
+        name.className = "task-title";
 
     let priority = document.createElement("h4");
         priority.textContent = taskObject.priority;
-        priority.setAttribute("class","task-priority");
+        priority.className = "task-priority";
 
     let description = document.createElement("p");
-        description.textContent = taskObject.description;
-        description.setAttribute("class","task-description");
+        description.innerText = taskObject.description;
+        description.className = "task-description";
 
-    task.append(name,priority,description);
+    let iconWrapper = document.createElement("div");
+        iconWrapper.className = "task-iconWrapper";
+        let editButton = document.createElement("span");
+            editButton.className = "material-symbols-outlined taskIcon";
+            editButton.textContent = "settings";
+            editButton.addEventListener("click",function(e){
+                if (editButton.className.includes("taskIconActive")) {
+                    let taskArray = [...document.querySelectorAll(".task")]
 
+                    taskHolder[taskArray.indexOf(task)].name = task.querySelector("input.nameInput").value;
+                    taskHolder[taskArray.indexOf(task)].description = task.querySelector(".descriptionInput").value;
+                    taskHolder[taskArray.indexOf(task)].priority = task.querySelector(".priorityInput").value;
+                    // could be replaced for forEach in future;
+                    task.querySelector(".task-title").textContent = task.querySelector("input.nameInput").value;
+                    task.querySelector(".task-description").textContent = task.querySelector(".descriptionInput").value;
+                    task.querySelector(".task-priority").textContent = task.querySelector(".priorityInput").value;
+                    
+                    updateTaskData()
+                    
+                    task.querySelector(".task-editContainer").remove()
+                    task.querySelector(".task .taskIcon:nth-child(1)").classList.remove("taskIconActive");
+                } else {
+                    let task = e.target;
+                    while (task.classList[0] !== "task") {
+                        task = task.parentElement;
+                    }
+
+                    let editContainer = document.createElement("div");
+                        editContainer.className = "task-editContainer";
+
+                    let name = document.createElement("input");
+                        name.className = "nameInput";
+                        name.value = task.querySelector(".task-title").textContent;
+                    let priority = document.createElement("select");
+                        priority.className = "priorityInput";
+                        let options = document.getElementById("taskForm-priorityInput").children;
+                            for (let i = 0; i < options.length; ++i) {
+                                let opt = document.createElement("option");
+                                opt.value = options[i].value;
+                                opt.textContent = options[i].value;
+                                priority.appendChild(opt);
+                            }
+                        priority.value = task.querySelector(".task-priority").textContent;
+                    let description = document.createElement("textarea");
+                        description.className = "descriptionInput";
+                        description.textContent = task.querySelector(".task-description").textContent;
+
+                    editContainer.append(name,priority,description);
+
+                    task.appendChild(editContainer);
+                    task.querySelector(".task .taskIcon:nth-child(1)").classList.add("taskIconActive");
+                }
+            })
+        let closeButton = document.createElement("span");
+            closeButton.className = "material-symbols-outlined taskIcon";
+            closeButton.textContent = "done";
+            closeButton.addEventListener("click",function(e){
+                let task = e.target;
+                while (task.classList[0] !== "task") {
+                    task = task.parentElement;
+                }
+                
+                taskHolder.splice([...document.querySelectorAll(".task")].indexOf(task),1);
+                updateTaskData();
+
+                task.remove();
+            })
+    iconWrapper.append(editButton,closeButton);
+    title.append(iconWrapper,name);
+
+    task.append(title,priority,description);
+    
     document.querySelectorAll(".taskHolder")[0].appendChild(task);
 }
 function getTaskForm(){
@@ -71,12 +144,11 @@ function validateTaskFormValues(arrayOfValues){
 
 
 
-/*
+/* 
 delete later!!
 
 to-do:
 
     css: change the select menu;
-    js: edit button, delete button;
     ui: mobile acessibility;
 */
