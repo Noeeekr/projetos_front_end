@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>parallax Effect</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style> 
+        :root {
+            --a: 0px;
+        }
+        body {
+            background-color: rgb(240,240,240);
+            height: auto;
+
+            margin: 0px;
+        }
+        .content {
+            width: 1000px;
+            box-shadow: rgba(0,0,0,0.2) 0px 0px 10px 10px;
+
+            margin: 0 auto;
+        }
+        .parallaxBackground {
+            width: 100%;
+            height: 600px;
+            background-image: url("https://images.unsplash.com/photo-1630868499424-b38f9f885d66?q=80&w=1032&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+        .div2 {
+            background-color: white;
+            width: 100%;
+            padding: 200px 0px;
+
+            font-size: 40px;
+            text-align: center;
+
+            color: black;
+        }
+    </style> 
+</head>
+<body>
+
+    <div class='content'>
+
+        <div class="parallaxBackground"></div>
+        <div class="div2">Random Text</div>
+        <div class="parallaxBackground"></div>
+        <div class="div2">Random Text</div>
+        <div class="parallaxBackground"></div>
+        <div class="div2">Random Text</div>
+        <div class="parallaxBackground"></div>
+        
+    </div>
+
+    <script>
+    
+    </script>
+</body>
+</html>
