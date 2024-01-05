@@ -31,7 +31,7 @@ body {
     border: solid 40px var(--color2);
     box-shadow: #D6E4E5 0px 0px 0px 10px;
 }
-.gameSection {
+.game .gameSection {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -63,17 +63,18 @@ body {
     font-size: 80px;
     font-family: Verdana;
     font-weight: bold;
+    text-shadow: rgb(0,0,0,0.6) 0px 0px 10px;
 
+    pointer-events: none;
+
+    transition: opacity 300ms ease-in-out, color 900ms ease-in-out;
+}
+.endingMessage_opacityAnimation {
+    opacity: 1;
+    pointer-events: all;
     cursor: pointer;
-
-    transition: opacity 300ms ease-in-out, color 900ms ease-in-out;
-}
-.endingMessage:hover {
-    opacity: 1;    
 }
 
-.state2 {
-    color: rgb(200,200,200);
-
-    transition: opacity 300ms ease-in-out, color 900ms ease-in-out;
+.endingMessage_textAnimation {
+    color: rgb(120,120,120);
 }
