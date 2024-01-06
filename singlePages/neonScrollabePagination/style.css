@@ -1,0 +1,135 @@
+@charset "UTF-8";
+
+:root {
+    --primary: #00121B;
+    --secondary: #80FF80;
+    --complementary: #7FFFD4;
+    --accent: #eb3461;
+    --dark: #000;
+    --font: 'Cairo', sans-serif;
+}
+body {
+    background-color: var(--primary);
+    background-image: linear-gradient(var(--primary),var(--dark));
+
+    overflow: hidden;
+
+    margin: 10px;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+
+.importantMessage {    
+    background-color: var(--complementary);
+    background-image: linear-gradient(0deg, var(--secondary), var(--complementary));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; 
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+
+    font-size: 12px;
+    font-family: var(--font);
+    line-height: 21px;
+    text-shadow: var(--secondary) 0px 0px 10px;
+
+    margin-bottom: 20px;
+}
+.main {
+    background-color: rgba(0, 18, 27, 0.95);
+    width: 80vw;
+    height: 600px;
+    border: solid 2px rgb(70,250,195,0.8);
+    border-radius: 1rem;
+    box-shadow: var(--complementary) 0px 0px 20px -5px;
+
+    overflow: hidden;
+    
+    margin: 0px;
+}
+.header {
+    width: 100%;
+    height: 10%;
+}
+.listVisualizer {
+    width: 100%;
+    height: 60%;
+}
+.table {
+    width: 100%;
+        min-width: 300px;
+    height: 100%;
+    border-collapse: collapse;
+
+    overflow: hidden;
+}
+.listVisualizer .table {
+    height: 100%;
+}
+.tr {
+    display: grid;
+    grid-template-rows: 1fr;
+    grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+
+    width: calc(100% - 20px);
+    padding-left: 20px;
+    border: none;
+}
+.tr:nth-child(odd) {
+    background-image: linear-gradient(90deg,transparent,rgb(22, 58, 50),transparent);  
+}
+.tr:nth-child(even) {
+    background-image: linear-gradient(90deg,transparent,rgb(19, 51, 45),transparent);  
+}
+.listVisualizer .tr {
+    background-color: rgb(0,0,0,0.2);
+    height: 10%;
+
+    font-weight: normal;
+    text-transform: capitalize;
+    text-shadow: var(--complementary) 0px 0px 8px;
+    color: var(--complementary);
+}
+.header .tr {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+        padding-bottom: 10px;
+
+    font-weight: bold;
+    text-transform: uppercase;
+    text-shadow: var(--secondary) 0px 0px 8px;
+    color: var(--secondary);
+    
+    margin: 0px;
+}
+.tr .tableSection {
+    display: flex;
+    align-items: center;
+    
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+        padding-left: 10px;
+
+    font-family: var(--font);
+    font-size: min(1.3vw,15.8242px);
+    
+    overflow: hidden;
+}
+.header .tableSection {
+    align-items: flex-end;
+}
+.main .listScrollbar {
+    height: 30%;
+    width: 100%;
+}
