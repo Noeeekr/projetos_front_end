@@ -84,10 +84,10 @@ body {
     padding-left: 20px;
     border: none;
 }
-.tr:nth-child(odd) {
+.tr:nth-child(even) {
     background-image: linear-gradient(90deg,transparent,rgb(22, 58, 50),transparent);  
 }
-.tr:nth-child(even) {
+.tr:nth-child(odd) {
     background-image: linear-gradient(90deg,transparent,rgb(19, 51, 45),transparent);  
 }
 .listVisualizer .tr {
@@ -129,7 +129,82 @@ body {
 .header .tableSection {
     align-items: flex-end;
 }
-.main .listScrollbar {
+.main .pageList_Scrollbar {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
     height: 30%;
     width: 100%;
+    box-sizing: border-box;
+        padding: 30px 20px 20px 20px;
+}
+.pageList_Scrollbar .scrollbar_InfoText {
+    font-family: Lato, "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
+    font-size: 14px;
+    text-shadow: rgb(150,190,150) 0px 0px 6px;
+    color: rgb(150,190,150);
+}
+.pageList_Scrollbar .scrollbar_Buttons {
+    display: grid;
+    align-items: center;
+    grid-template-columns: 1fr 1.7fr 1fr;
+    grid-template-rows: 1fr;
+    
+    width: 100%;
+    height: 60px;
+    background-color: rgb(200,0,0,0.1);
+
+    font-size: 20px;
+
+    margin: 10px 0px;
+}
+.scrollbar_Buttons .scrollbar_LeftButtons {
+    display: flex;
+    flex-direction: row;
+
+    margin: 0px auto;
+}
+.scrollbar_Buttons .scrollbar_CenterButtons {
+    display: flex;
+    flex-direction: row;
+
+    margin: 0px auto;
+}
+.scrollbar_Buttons .scrollbar_RightButtons {
+    display: flex;
+    flex-direction: row;
+
+    margin: 0px auto;
+}
+.pageList_Scrollbar .scrollbar_InfoBar {
+    position: relative;
+    
+    width: 90%;
+    height: 10px;
+}
+.pageList_Scrollbar .scrollbar_InfoBar::before {
+    position: absolute;
+    top: 25%;
+    left: 0px;
+
+    content: "";
+    
+    background-color: green;
+    height: 50%;
+    width: 100%;
+    border-radius: 3px;
+
+    z-index: 1;
+}
+.scrollbar_InfoBar .infoBar_Button {
+    position: absolute;
+    left: 0px;
+
+    background-color: aqua;
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+
+    z-index: 2;
 }
