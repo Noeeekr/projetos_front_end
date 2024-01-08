@@ -11,10 +11,10 @@
 body {
     background-color: var(--primary);
     background-image: linear-gradient(var(--primary),var(--dark));
+    height: 100vh;
+    width: 100vw;
 
-    overflow: hidden;
-
-    margin: 10px;
+    margin: 0px;
 }
 
 
@@ -37,32 +37,56 @@ body {
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
 
-    font-size: 12px;
+    font-size: min(1.3vw,15.8242px);
     font-family: var(--font);
-    line-height: 21px;
+    line-height: 140%;
     text-shadow: var(--secondary) 0px 0px 10px;
 
     margin-bottom: 20px;
 }
 .main {
+    position: relative;
+
     background-color: rgba(0, 18, 27, 0.95);
     width: 80vw;
     height: 600px;
     border: solid 2px rgb(70,250,195,0.8);
     border-radius: 1rem;
     box-shadow: var(--complementary) 0px 0px 20px -5px;
-
-    overflow: hidden;
     
+    overflow: hidden;
+
     margin: 0px;
+}
+.scroll {
+    position: absolute;
+    opacity: 0;
+    
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    
+    background-color: red;
+    width: 100%;
+    height: 100%;
+
+    overflow: scroll;
+
+}
+.scroll .overflow {
+    background-color: blue;
+    width: 200%;
+    height: 200%;
 }
 .header {
     width: 100%;
     height: 10%;
+        min-height: 40px;
 }
 .listVisualizer {
     width: 100%;
     height: 60%;
+        min-height: 240px;
 }
 .table {
     width: 100%;
@@ -128,6 +152,7 @@ body {
 }
 .header .tableSection {
     align-items: flex-end;
+    font-size: min(1.4vw,15.8242px);
 }
 .main .pageList_Scrollbar {
     display: flex;
@@ -135,13 +160,14 @@ body {
     align-items: center;
 
     height: 30%;
+        min-height: 120px;
     width: 100%;
     box-sizing: border-box;
         padding: 30px 20px 20px 20px;
 }
 .pageList_Scrollbar .scrollbar_InfoText {
-    font-family: Lato, "Lucida Grande", "Lucida Sans Unicode", Tahoma, sans-serif;
-    font-size: 14px;
+    font-family: "Cairo", sans-serif;
+    font-size: min(1.3vw,15.8242px);
     text-shadow: rgb(150,190,150) 0px 0px 6px;
     color: rgb(150,190,150);
 }
@@ -153,35 +179,91 @@ body {
     
     width: 100%;
     height: 60px;
-    background-color: rgb(200,0,0,0.1);
 
     font-size: 20px;
+    text-shadow: var(--secondary) 0px 0px 8px;
+    color: var(--secondary);
+    
+    user-select: none;
 
     margin: 10px 0px;
 }
 .scrollbar_Buttons .scrollbar_LeftButtons {
     display: flex;
     flex-direction: row;
+    gap: 70px;
+
+    padding: 0px;
+
+    transform: scale(1.4);
 
     margin: 0px auto;
 }
 .scrollbar_Buttons .scrollbar_CenterButtons {
+    position: relative;
+    left: 0;
+    
     display: flex;
     flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 4px;
+
+    width: 100%;
+        max-width: 350px;
+    height: 100%;
+    padding: 0px;
+
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+    
+    overflow: scroll;
+
+    font-family: "Cairo", sans-serif;
+
+    cursor: pointer;
 
     margin: 0px auto;
+}
+.scrollbar_CenterButtons::-webkit-scrollbar {
+    width: 0px;
+    height: 0px;
+}
+.scrollbar_CenterButtons .randomButton {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 40px;
+    width: 40px;
+    border-radius: 0.5rem;
+
+    flex: 0 0 auto;
+}
+.scrollbar_CenterButtons .randomButton.active {
+    background-color: var(--primary);
+    background-image: linear-gradient(45deg,var(--primary),rgb(10,30,20));
+    border: solid 1px rgb(150,190,150,0.5);
 }
 .scrollbar_Buttons .scrollbar_RightButtons {
     display: flex;
     flex-direction: row;
+    gap: 70px;
+
+    transform: scale(1.4);
+
+    padding: 0px;
 
     margin: 0px auto;
+}
+.scrollbar_Buttons .scrollbar_RightButtons:nth-child() {
+    cursor: pointer;
 }
 .pageList_Scrollbar .scrollbar_InfoBar {
     position: relative;
     
     width: 90%;
-    height: 10px;
+    height: 6px;
 }
 .pageList_Scrollbar .scrollbar_InfoBar::before {
     position: absolute;
@@ -190,7 +272,7 @@ body {
 
     content: "";
     
-    background-color: green;
+    background-color: rgb(160,160,160,0.1);
     height: 50%;
     width: 100%;
     border-radius: 3px;
@@ -201,10 +283,13 @@ body {
     position: absolute;
     left: 0px;
 
-    background-color: aqua;
-    height: 12px;
-    width: 12px;
+    background-color: rgb(20,74,39);
+    height: 6px;
+    width: 6px;
     border-radius: 100%;
 
     z-index: 2;
+}
+.smallButton, .bigButton {
+    cursor: pointer;
 }
