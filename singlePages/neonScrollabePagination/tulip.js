@@ -6,16 +6,26 @@ let infos = (function() {
 
     return {CURRENTPAGE,PROFILEINFO,PROFILES,SCROLLBAR_INFO};
 })();
-
 (function(){
     for (let i = 0; i < 301; i++) {
-        createProfiles()
+        createProfile()
     }
-    renderPage(1);
+    renderPage();
     renderButtons();
-    document.querySelector(".scroll").addEventListener("wheel",function(e){scrollHandler(e)});
-    [...document.querySelectorAll(".bigButton")].forEach((button) => {button.addEventListener('click',(e)=>{buttonHandler(e,"big")})});
-    [...document.querySelectorAll(".smallButton")].forEach((button) => {button.addEventListener('click',(e)=>{buttonHandler(e,"small")})});
+    updateDisplayText();
+    document.querySelector("body").addEventListener("wheel",function(e){scrollHandler(e)});
+    [...document.querySelectorAll(".listVisualizer td div")].forEach((td) => {
+        td.addEventListener("mouseover",(e) => {listDecoration(e)})
+    });
+    [...document.querySelectorAll(".listVisualizer td div")].forEach((td) => {
+        td.addEventListener("mouseout",(e) => {listDecoration(e,"remove")})
+    });
+    [...document.querySelectorAll(".bigButton")].forEach((button) => {
+        button.addEventListener('click',(e)=>{buttonHandler(e,"big")})
+    });
+    [...document.querySelectorAll(".smallButton")].forEach((button) => {
+        button.addEventListener('click',(e)=>{buttonHandler(e,"small")})
+    });
 })();
 
 function buttonHandler(event,type) {
@@ -41,6 +51,12 @@ function buttonHandler(event,type) {
         }
     }
 }
+function updateDisplayText() {
+    let loadedProfiles = [...document.querySelectorAll(".listVisualizer tr")];
+
+    document.getElementsByName("scrollbarPagesInfo")[0].textContent = `${[...document.querySelectorAll(".randomButton")].indexOf(document.querySelector(".randomButton.active")) + 1}/${(Math.ceil(infos.PROFILES.length / 10))}`;
+    document.getElementsByName("scrollbarRowsInfo")[0].textContent = `${loadedProfiles[0].firstChild.textContent}-${loadedProfiles[loadedProfiles.length - 1].firstChild.textContent}`;
+}
 function updateButton(eventOrIndex) {
     let button;
     if (typeof eventOrIndex !== 'number') {
@@ -48,28 +64,30 @@ function updateButton(eventOrIndex) {
     } else {
         button = document.querySelectorAll(".randomButton")[eventOrIndex]
     }
-    renderPage([...document.querySelectorAll(".randomButton")].indexOf(button));
     document.querySelector(".randomButton.active").classList.remove("active");
     button.classList.add("active");
+
+    renderPage([...document.querySelectorAll(".randomButton")].indexOf(button));
     scrollbar_Ball();
+    updateDisplayText();
 }
 function renderButtons() {
-    let buttons = Math.ceil(infos.PROFILES.length / 10);
-
-    for (let i = 0; i < buttons; i++){
+    for (let i = 0; i < Math.ceil(infos.PROFILES.length / 10); i++){
         let btn = document.createElement("li")
             btn.className = "randomButton";
             btn.textContent = i + 1;
         if (i === 0) btn.className += " active";
-        btn.addEventListener("click",function(e){updateButton(e)});
-        
+            btn.addEventListener("click",function(e){updateButton(e)});
+
         document.querySelector(".scrollbar_CenterButtons").appendChild(btn);
     }
+
     infos.SCROLLBAR_INFO.visibleButtons = Math.floor(document.querySelector(".scrollbar_CenterButtons").getBoundingClientRect().width / document.querySelector(".randomButton").getBoundingClientRect().width);
     infos.SCROLLBAR_INFO.buttonAmount = document.querySelectorAll(".randomButton").length;
     infos.SCROLLBAR_INFO.buttonsToFillScrollbar = Math.floor(document.querySelector(".scrollbar_CenterButtons").getBoundingClientRect().width / document.querySelector(".randomButton").getBoundingClientRect().width);
 }
 function renderPage(page) {
+    if (typeof page !== "number") page = 0;
     // gets a list of elements based on page value;
     let profileArray = infos.PROFILES.slice(page * 10,page * 10 + 10);
     // clean current table;
@@ -87,15 +105,14 @@ function renderProfile(profile) {
     for (let i = 0; i < profile.length; i++) {
         let td = document.createElement("td");
             td.className = "tableSection";
-
-        td.textContent = profile[i];
+            td.textContent = profile[i];
 
         tr.appendChild(td)
     }
 
     document.querySelectorAll(".listVisualizer .table")[0].appendChild(tr);
 }
-function createProfiles() {
+function createProfile() {
     let profile = [];
     let infoArrays = infos.PROFILEINFO;
     // PROFILE INFO BEING FILLED;
@@ -135,7 +152,7 @@ function scrollHandler(eventOrBoolean) {
         timesScrolled--;
     }
 
-    if (!(timesScrolled < midButton)) {
+    if (!(timesScrolled < midButton && !ScrollDirection)) {
         document.querySelector(".scrollbar_CenterButtons").scroll({left: 44 * (timesScrolled - midButton)})
     } // makes the scroll wait until the active button reach the middle of the scrollbar;
 
@@ -149,5 +166,10 @@ function scrollbar_Ball() {
 }
 
 
-// only need to do the text display that says which page we are rn;
-// scroll shit done;
+setInterval(function(){
+    if (document.querySelector(".main").classList[1]) {
+        document.querySelector(".main").classList.remove("effect");
+    } else {
+        document.querySelector(".main").classList.add("effect");
+    }
+},3000);
