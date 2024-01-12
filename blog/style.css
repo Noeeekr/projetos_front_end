@@ -1,0 +1,129 @@
+@charset "UTF-8";
+
+:root {
+    --primary: rgb(255, 255, 236);
+    --secondary: rgb(241, 228, 195);
+    --complementary: rgb(198, 169, 105);
+    --dark: rgb(29, 46, 22);
+}
+body {
+    background-color: rgb(240,240,240);
+
+    margin: 0px;
+}
+
+.page {
+    background-color: rgb(100,0,0,0.1);
+}
+.pageHeader {    
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+    background-color: var(--secondary);
+        min-height: 300px;
+}
+.pageHeader .title {
+    position: relative;
+    top: -20px;
+
+    font-family: Verdana;
+
+    overflow: hidden;
+
+    margin: auto;
+}
+.pageNavigation {
+    position: sticky;
+    top: 0px;
+    left: 0px;
+
+    width: 100%;
+    height: 45px;
+
+    overflow: hidden;
+
+    z-index: 999;
+}
+.pageNavigation ul {
+    display: flex;
+
+    background-color: var(--complementary);
+    width: 100%;
+    height: 100%;
+    padding: 0px;
+
+    margin: 0px;
+}
+.pageNavigation .textLink {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 100%;
+    min-width: 60px;
+    max-width: 15%;
+    padding: 0px 10px;
+
+    font-family: Tahoma;
+    font-size: 14px;
+    
+    cursor: pointer;
+}
+.pageNavigation .textLink:hover {
+    background-color: rgba(0,0,0,0.1);
+}
+.pageNavigation a {
+    text-decoration: none;
+    color: inherit;
+}
+.pageNavigation .searchBar {
+    margin-left: auto;
+}
+
+.pageContent {
+    background-color: var(--primary);
+    width: 100%;
+    height: auto;
+        min-height: 500px;
+}
+.pagePost_section ul {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    gap: 30px;
+
+    box-sizing: border-box;
+    padding: 20px 40px;
+
+    margin: 0px;
+}
+.pagePost_section li {
+    position: relative;
+    top: 0;
+
+    background-color: rgb(255, 255, 246);
+    width: 100%;
+    height: 300px;
+        max-height: 500px;
+    border: solid 1px rgb(0,0,0,0.2);
+    border-radius: 0.5rem;
+    box-shadow: rgb(0,0,0,0.1) 0px 0px 5px 0px;
+
+    transition: top 200ms ease-in-out, 200ms ease-in-out;
+
+    overflow: hidden;
+
+    margin: 0px auto;
+}
+.pagePost_section li:hover {
+    top: -5px;
+    transform: scale(1.01);
+}
+
+
+@media screen and (max-width: 790px) {
+    .pagePost_section ul {
+        grid-template-columns: 1fr;
+    }
+}

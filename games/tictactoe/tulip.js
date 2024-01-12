@@ -35,9 +35,8 @@ function resetAnimation() {
 function endingAnimation() {
     if ([...document.querySelector(".endingMessage").classList].includes("endingMessage_opacityAnimation")) {
         document.querySelector(".endingMessage").classList.remove("endingMessage_opacityAnimation");
-        document.querySelectorAll(".gameSection").forEach(section => {section.textContent = ""});
         
-        document.querySelectorAll(".gameSection").forEach((section) => {section.textContent = ""})
+        document.querySelectorAll(".gameSection").forEach((section) => {section.textContent = ""});
         // cleans the sections after game ends;
         
         return;

@@ -27,7 +27,6 @@ let infos = (function() {
         button.addEventListener('click',(e)=>{buttonHandler(e,"small")})
     });
 })();
-
 function buttonHandler(event,type) {
     let buttonAmount = infos.SCROLLBAR_INFO.buttonAmount - 1; // - 1 for array index;
     let currentButton = [...document.querySelectorAll(".randomButton")].indexOf(document.querySelector(".randomButton.active"));
