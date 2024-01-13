@@ -1,9 +1,9 @@
 @charset "UTF-8";
 
 :root {
-    --primary: rgb(255, 255, 236);
-    --secondary: rgb(241, 228, 195);
-    --complementary: rgb(198, 169, 105);
+    --primary: rgb(230, 230, 230);
+    --secondary: rgb(245,245,250);
+    --complementary: rgb(8, 164, 151);
     --dark: rgb(29, 46, 22);
 }
 body {
@@ -20,7 +20,7 @@ body {
     flex-direction: column;
     align-items: center;
     
-    background-color: var(--secondary);
+    background-color: var(--complementary);
         min-height: 300px;
 }
 .pageHeader .title {
@@ -48,7 +48,7 @@ body {
 .pageNavigation ul {
     display: flex;
 
-    background-color: var(--complementary);
+    background-color: var(--secondary);
     width: 100%;
     height: 100%;
     padding: 0px;
@@ -67,11 +67,11 @@ body {
 
     font-family: Tahoma;
     font-size: 14px;
-    
+
     cursor: pointer;
 }
 .pageNavigation .textLink:hover {
-    background-color: rgba(0,0,0,0.1);
+    text-shadow: black 0px 0px 1px;
 }
 .pageNavigation a {
     text-decoration: none;
@@ -87,43 +87,152 @@ body {
     height: auto;
         min-height: 500px;
 }
-.pagePost_section ul {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-rows: auto;
-    gap: 30px;
+.pagePost_section .mainTitle {
+    font-size: 1.7rem;
+    font-family: Tahoma;
+    text-align: center;
 
-    box-sizing: border-box;
-    padding: 20px 40px;
-
+    padding: 20px 0px 0px 0px;
+    
     margin: 0px;
 }
-.pagePost_section li {
-    position: relative;
-    top: 0;
+.pagePost_section .lastest_posts {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
 
-    background-color: rgb(255, 255, 246);
-    width: 100%;
-    height: 300px;
-        max-height: 500px;
-    border: solid 1px rgb(0,0,0,0.2);
-    border-radius: 0.5rem;
-    box-shadow: rgb(0,0,0,0.1) 0px 0px 5px 0px;
-
-    transition: top 200ms ease-in-out, 200ms ease-in-out;
+    width: 99%;
+    max-width: 1000px;
+    box-sizing: border-box;
+        padding: 20px 0px 0px 0px;
 
     overflow: hidden;
 
     margin: 0px auto;
 }
-.pagePost_section li:hover {
-    top: -5px;
-    transform: scale(1.01);
+.lastest_posts .post {
+    position: relative;
+
+    display: flex;
+    flex-direction: row;
+
+    width: 100%;
+    height: 300px;
+
+    margin: 70px 0px 0px 0px;
+}
+.lastest_posts .post:hover .postImage,.lastest_posts .post:hover .postContent {
+    left: -10%;
+}
+.lastest_posts .post:hover .checkMoreButton {
+    left: 0;
+}
+.lastest_posts .postImage {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+
+    background-size: cover;
+    background-color: grey;
+    width: 300px;
+    height: 100%;
+    border-radius: 1rem;
+
+    transition: left 200ms ease-in-out;
+
+    cursor: default;
+    
+    z-index: 2;
+}
+.lastest_posts .postContent {
+    position: absolute;
+    top: -25px;
+    left: 0px;
+
+    background-color: var(--secondary);
+    width: 94%;
+    height: 100%;
+    box-sizing: border-box;
+        padding: 30px;
+        border-left: solid 300px transparent;
+    border-end-end-radius: 20px;
+    border-top-left-radius: 20px;
+
+    text-align: left;
+    
+    transition: left 200ms ease-in-out;
+    
+    overflow: hidden;
+
+    margin-left: 3%;
+
+    z-index: 1;
+}
+.lastest_posts .checkMoreButton {
+    position: relative;
+    top: -25px;
+    left: 100px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100px;
+    height: 100%;
+
+    font-size: 50px;
+    font-family: Tahoma;
+    color: black;
+
+    transition: left 200ms ease-in-out;
+
+    cursor: pointer;
+
+    margin: 0px 0px 0px auto;
+}
+.checkMoreButton .material-symbols-outlined {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    height: 50px;
+    width: 50px;
+    border-radius: 100%;
+
+    background-color: rgba(210,230,230,0.8);
+    color: var(--complementary);
+
+    opacity: 0;
+
+    transition: opacity 500ms ease-in-out;
+}
+.post:hover .checkMoreButton .material-symbols-outlined {
+    opacity: 1;
+}
+.post .title {
+    font-size: 1.5rem;
+    font-family: Helvetica;
+    
+    margin: 0px;
+}
+.post .description {
+    height: 100%;
+    width: 100%;
+    box-sizing: border-box;
+        padding: 0px 20px; 
+
+    font-size: 1.2rem;
+}
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
 }
 
-
-@media screen and (max-width: 790px) {
-    .pagePost_section ul {
-        grid-template-columns: 1fr;
+@media screen and (max-width: 600px) {
+    .post .title {
+        color: green;
     }
 }
