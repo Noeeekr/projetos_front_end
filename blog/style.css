@@ -12,26 +12,66 @@ body {
     margin: 0px;
 }
 
-.page {
-    background-color: rgb(100,0,0,0.1);
+.postContent {
+    position: relative;
+    
+    width: 1100px;
+
+
 }
-.pageHeader {    
+
+.page {
+    position: relative;
+
+    display: flex;
+    flex-direction: column;
+
+    width: 100%;
+    height: auto;
+}
+.pageHeader_holder {    
+    position: relative;
+
+    width: 100vw;
+    height: 340px;
+}
+.pageHeader {
+    position: absolute;
+
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: 50px 240px 50px;
+    
+    width: 100%;
+    height: 100vmin; /* how much the nav bar will go down before hiding*/
+}
+.pagePresentation {
+    position: sticky;
+    
     display: flex;
     flex-direction: column;
     align-items: center;
-    
-    background-color: var(--complementary);
-        min-height: 300px;
+    justify-content: center;
+
+    background-color: rgb(230, 230, 230);
+    background-image: url("https://images.unsplash.com/photo-1702893574757-e3b26e142b8a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8fHx8fHx8MTcwNTEwMDc0NQ&ixlib=rb-4.0.3&q=80&w=1080");
+    background-size: cover;
+    background-position: 0% 30%;
+    background-attachment: fixed;
+    height: 100%;
+    width: 100%;
 }
-.pageHeader .title {
-    position: relative;
-    top: -20px;
+.pagePresentation .title {
+    font-size: 2.5rem;
+    font-weight: 700;
 
-    font-family: Verdana;
+    margin: 10px;
+}
+.pagePresentation .description {
+    font-size: 1.1rem;
+    color: rgba(0,0,0,0.8);
 
-    overflow: hidden;
-
-    margin: auto;
+    margin: 0px;
 }
 .pageNavigation {
     position: sticky;
@@ -39,14 +79,20 @@ body {
     left: 0px;
 
     width: 100%;
-    height: 45px;
+    height: 100%;
+    box-sizing: border-box;
+        border: solid 1px rgba(190,190,190,0.8);
 
+    user-select: none;
+    
     overflow: hidden;
 
     z-index: 999;
 }
 .pageNavigation ul {
     display: flex;
+    flex-direction: row;
+    justify-content: center;
 
     background-color: var(--secondary);
     width: 100%;
@@ -61,17 +107,18 @@ body {
     justify-content: center;
 
     height: 100%;
-    min-width: 60px;
+    min-width: 80px;
     max-width: 15%;
     padding: 0px 10px;
 
-    font-family: Tahoma;
-    font-size: 14px;
+    font-family: 'Trebuchet MS';
+    font-weight: 500;
+    font-size: 16px;
 
     cursor: pointer;
 }
 .pageNavigation .textLink:hover {
-    text-shadow: black 0px 0px 1px;
+    color: var(--complementary);
 }
 .pageNavigation a {
     text-decoration: none;
@@ -92,7 +139,7 @@ body {
     font-family: Tahoma;
     text-align: center;
 
-    padding: 20px 0px 0px 0px;
+    padding: 40px 0px 0px 0px;
     
     margin: 0px;
 }
@@ -102,9 +149,9 @@ body {
     grid-template-rows: auto;
 
     width: 99%;
-    max-width: 1000px;
+    max-width: 1100px;
     box-sizing: border-box;
-        padding: 20px 0px 0px 0px;
+        padding: 20px;
 
     overflow: hidden;
 
@@ -117,7 +164,7 @@ body {
     flex-direction: row;
 
     width: 100%;
-    height: 300px;
+    height: 250px;
 
     margin: 70px 0px 0px 0px;
 }
@@ -125,22 +172,23 @@ body {
     left: -10%;
 }
 .lastest_posts .post:hover .checkMoreButton {
-    left: 0;
+    left: -30px;
 }
+
 .lastest_posts .postImage {
     position: absolute;
     top: 0px;
     left: 0px;
 
     background-size: cover;
-    background-color: grey;
+    background-color: rgb(200,200,200);
     width: 300px;
     height: 100%;
     border-radius: 1rem;
 
     transition: left 200ms ease-in-out;
 
-    cursor: default;
+    user-select: none;
     
     z-index: 2;
 }
@@ -206,16 +254,16 @@ body {
 
     transition: opacity 500ms ease-in-out;
 }
-.post:hover .checkMoreButton .material-symbols-outlined {
+.lastest_posts .post:hover .checkMoreButton .material-symbols-outlined {
     opacity: 1;
 }
-.post .title {
+.lastest_posts .post .title {
     font-size: 1.5rem;
     font-family: Helvetica;
     
     margin: 0px;
 }
-.post .description {
+.lastest_posts .post .description {
     height: 100%;
     width: 100%;
     box-sizing: border-box;
@@ -223,7 +271,7 @@ body {
 
     font-size: 1.2rem;
 }
-.material-symbols-outlined {
+.lastest_posts .material-symbols-outlined {
   font-variation-settings:
   'FILL' 0,
   'wght' 400,
@@ -231,8 +279,111 @@ body {
   'opsz' 24;
 }
 
+.pagePost_section .featured_posts {
+    display: flex;
+    flex-direction: row;
+    
+    width: 100vw;
+        max-width: 1100px;
+    height: 500px; 
+    padding: 0px;   
+    
+    margin: 0px auto;
+}
+.featured_posts .post {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: visible;
+
+    flex: 1 1 auto;
+}
+.featured_posts .post::before {  
+    content: "";
+
+    position: absolute;
+    top: 0px;
+    left: 0px;    
+
+    width: 100%;
+    height: 100%;
+
+    z-index: 990;
+
+    transition: background 200ms ease-in-out, backdrop-filter 200ms ease-in-out;
+}
+.featured_posts .post:hover::before {
+    background-color: rgba(250,250,250,0.2);
+    backdrop-filter: blur(3px);
+}
+.featured_posts .postImage {
+    position: absolute;
+
+    background-color: var(--complementary);  
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+    user-select: none;
+
+    z-index: 1;
+}
+.featured_posts .postContent {
+    position: absolute;
+    top: 0;
+    left: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+        padding: 20px;
+
+    overflow: hidden;
+
+    z-index: 990;
+}
+.featured_posts .title {
+    font-size: 30px;
+    font-family: Georgia;
+    font-weight: bold;
+    color: black;
+
+    margin: 10px 0px;
+}
+.featured_posts .description {
+    font-size: 17px;
+    font-family: times;
+    color: black;
+    
+    margin: 10px 0px;
+}
+.featured_posts .button {
+    position: absolute;
+    top: calc(100% - 17.25px);
+    left: 10%;
+    right: 10%;
+
+    z-index: 990;
+
+    background-color: rgb(240,240,240);
+    height: 35px;
+    border: solid 1px rgba(0,0,0,0.4);
+    border-radius: 1rem;
+
+    transition: color 200ms ease-in-out, border 200ms ease-in-out;
+}
+.featured_posts .button:hover {
+    border: solid 1px var(--complementary);
+    color: var(--complementary);
+}
 @media screen and (max-width: 600px) {
-    .post .title {
+    .lastest_posts .post .title {
         color: green;
     }
 }
