@@ -7,12 +7,11 @@ let infos = (function() {
     return {CURRENTPAGE,PROFILEINFO,PROFILES,SCROLLBAR_INFO};
 })();
 (function(){
-    for (let i = 0; i < 301; i++) {
-        createProfile()
-    }
-    renderPage();
-    renderButtons();
-    updateDisplayText();
+    for (let i = 0; i < 301; i++) createProfile();
+
+    renderPage(),
+        renderButtons(),
+        updateDisplayText(),
     document.querySelector("body").addEventListener("wheel",function(e){scrollHandler(e)});
     [...document.querySelectorAll(".listVisualizer td div")].forEach((td) => {
         td.addEventListener("mouseover",(e) => {listDecoration(e)})
@@ -88,9 +87,10 @@ function renderButtons() {
 function renderPage(page) {
     if (typeof page !== "number") page = 0;
     // gets a list of elements based on page value;
-    let profileArray = infos.PROFILES.slice(page * 10,page * 10 + 10);
+    let profileArray = infos.PROFILES.slice(page * 10,page * 10 + 10),
     // clean current table;
-    let currentTable = document.querySelectorAll(".listVisualizer .table")[0];
+        currentTable = document.querySelectorAll(".listVisualizer .table")[0];
+    
     [...currentTable.children].forEach((element) => {element.remove()})
     // starts rendering new table elements;
     profileArray.forEach(
@@ -128,18 +128,17 @@ function createProfile() {
     return profile;
 }
 function scrollHandler(eventOrBoolean) {
-    let visibleButtons = infos.SCROLLBAR_INFO.visibleButtons;
-    let midButton = Math.floor(visibleButtons / 2)
-    
-    let timesScrolled = [...document.querySelectorAll(".randomButton")].indexOf(document.querySelector(".randomButton.active"));
+    let visibleButtons = infos.SCROLLBAR_INFO.visibleButtons,
+        midButton = Math.floor(visibleButtons / 2),
+        timesScrolled = [...document.querySelectorAll(".randomButton")].indexOf(document.querySelector(".randomButton.active"));
 
     if (typeof eventOrBoolean === "boolean") {
         document.querySelector(".scrollbar_CenterButtons").scroll({left: 44 * (timesScrolled - midButton)})
         return;
     }
 
-    let ScrollDirection = eventOrBoolean.deltaY ? eventOrBoolean.deltaY < 0 : eventOrBoolean;
-    let buttonAmount = (visibleButtons - 1) + infos.SCROLLBAR_INFO.buttonAmount - infos.SCROLLBAR_INFO.buttonsToFillScrollbar;
+    let ScrollDirection = eventOrBoolean.deltaY ? eventOrBoolean.deltaY < 0 : eventOrBoolean,
+        buttonAmount = (visibleButtons - 1) + infos.SCROLLBAR_INFO.buttonAmount - infos.SCROLLBAR_INFO.buttonsToFillScrollbar;
 
     if (!ScrollDirection) {
         if (timesScrolled === buttonAmount) return;
@@ -151,9 +150,8 @@ function scrollHandler(eventOrBoolean) {
         timesScrolled--;
     }
 
-    if (!(timesScrolled < midButton && !ScrollDirection)) {
-        document.querySelector(".scrollbar_CenterButtons").scroll({left: 44 * (timesScrolled - midButton)})
-    } // makes the scroll wait until the active button reach the middle of the scrollbar;
+    (timesScrolled < midButton && !ScrollDirection) || document.querySelector(".scrollbar_CenterButtons").scroll({left: 44 * (timesScrolled - midButton)});
+ // makes the scroll wait until the active button reach the middle of the scrollbar;
 
     updateButton(timesScrolled);
 }

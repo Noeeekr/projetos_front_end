@@ -1,0 +1,66 @@
+@charset "UTF-8";
+
+:root {
+    /*
+        section A = first 90% of circle starting
+        from the horizontal line.
+
+        each section has two points that determine
+        the radius.
+    */
+    --sectionAright: 50%;
+    --sectionBright: 50%;
+    --sectionCright: 50%;
+    --sectionDright: 50%;
+    --sectionAleft: 50%;
+    --sectionBleft: 50%;
+    --sectionCleft: 50%;
+    --sectionDleft: 50%;
+}
+body {
+    background-color: rgb(230,230,230);
+}
+.content {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 100vw;
+    height: 100vh;
+}
+.box {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(100,0,0);
+    background-image: linear-gradient(35deg,rgb(250,0,0),rgb(250,150,0));
+    width: 250px;
+    height: 250px;
+    border-radius: var(--sectionAleft) var(--sectionBleft) var(--sectionCleft) var(--sectionDleft) / var(--sectionAright) var(--sectionBright) var(--sectionCright) var(--sectionDright);
+    
+}
+.range {
+    position: absolute;
+
+    width: 100%;
+    height: 10px;
+}
+.range:nth-of-type(1) {
+    top: calc(100% + 40px);
+}
+.range:nth-of-type(2) {
+    top: -50px;
+}
+.range:nth-of-type(3) {
+    left: 75%;
+
+    transform: rotate(90deg);
+}
+.range:nth-of-type(4) {
+    left: -75%;
+
+    transform: rotate(90deg);
+}
