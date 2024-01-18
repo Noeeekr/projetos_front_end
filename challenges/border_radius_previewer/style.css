@@ -8,17 +8,19 @@
         each section has two points that determine
         the radius.
     */
-    --sectionAright: 50%;
-    --sectionBright: 50%;
-    --sectionCright: 50%;
-    --sectionDright: 50%;
-    --sectionAleft: 50%;
-    --sectionBleft: 50%;
-    --sectionCleft: 50%;
-    --sectionDleft: 50%;
+    --sectionAright: 20%;
+    --sectionBright: 20%;
+    --sectionBleft: 20%;
+    --sectionCleft: 20%;
+    --sectionCright: 20%;
+    --sectionDleft: 20%;
+    --sectionDright: 20%;
+    --sectionAleft: 20%;
 }
 body {
     background-color: rgb(230,230,230);
+
+    overflow: hidden;
 }
 .content {
     display: flex;
@@ -35,32 +37,60 @@ body {
     align-items: center;
     justify-content: center;
 
-    background-color: rgb(100,0,0);
-    background-image: linear-gradient(35deg,rgb(250,0,0),rgb(250,150,0));
+    background-color: rgb(230,230,230);
+    background-image: linear-gradient(53deg, rgb(200,200,200), rgb(230,230,230));
     width: 250px;
     height: 250px;
     border-radius: var(--sectionAleft) var(--sectionBleft) var(--sectionCleft) var(--sectionDleft) / var(--sectionAright) var(--sectionBright) var(--sectionCright) var(--sectionDright);
-    
+    box-shadow: rgb(0,0,0,0.5) 0px 0px 10px 0px;
 }
-.range {
+.input-range {
     position: absolute;
 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+    background-color: grey;
+    width: 100%;
+    height: 1px;
+}
+.input-range:nth-child(1) {
+    top: -10%;
+}
+.input-range:nth-child(2) {
+    transform: rotate(90deg);
+
+    right: -60%;
+}
+.input-range:nth-child(3) {
+    top: 110%;
+}
+.input-range:nth-child(4) {
+    transform: rotate(90deg);
+
+    left: -60%;
+}
+.input-range .range {
+    position: absolute;
+
+    background: none;
     width: 100%;
     height: 10px;
-}
-.range:nth-of-type(1) {
-    top: calc(100% + 40px);
-}
-.range:nth-of-type(2) {
-    top: -50px;
-}
-.range:nth-of-type(3) {
-    left: 75%;
 
-    transform: rotate(90deg);
+    appearance:initial;
+    -webkit-appearance: none;
+    
+    pointer-events: none;
 }
-.range:nth-of-type(4) {
-    left: -75%;
+.input-range .range::-webkit-slider-thumb {
+    background-color: rgb(240,150,150);
+    width: 15px;
+    height: 15px;
+    border-radius: 100%;
+    border: solid 1px grey;
 
-    transform: rotate(90deg);
+    -webkit-appearance: none;
+
+    pointer-events: auto;
 }
