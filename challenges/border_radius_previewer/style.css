@@ -8,14 +8,14 @@
         each section has two points that determine
         the radius.
     */
-    --sectionAright: 20%;
-    --sectionBright: 20%;
-    --sectionBleft: 20%;
-    --sectionCleft: 20%;
-    --sectionCright: 20%;
-    --sectionDleft: 20%;
-    --sectionDright: 20%;
-    --sectionAleft: 20%;
+    --topLeftA: 40%;
+    --topLeftB: 60%;
+    --topRightA: 40%;
+    --topRightB: 60%;
+    --bottomLeftA: 40%;
+    --bottomLeftB: 60%;
+    --bottomRightA: 40%;
+    --bottomRightB: 60%;
 }
 body {
     background-color: rgb(230,230,230);
@@ -41,8 +41,29 @@ body {
     background-image: linear-gradient(53deg, rgb(200,200,200), rgb(230,230,230));
     width: 250px;
     height: 250px;
-    border-radius: var(--sectionAleft) var(--sectionBleft) var(--sectionCleft) var(--sectionDleft) / var(--sectionAright) var(--sectionBright) var(--sectionCright) var(--sectionDright);
+    border-radius: var(--topLeftA) var(--topRightA) var(--bottomLeftA) var(--bottomRightA) / var(--topLeftB) var(--topRightB) var(--bottomLeftB) var(--bottomRightB);
     box-shadow: rgb(0,0,0,0.5) 0px 0px 10px 0px;
+}
+.inputValueViewer {
+    position: absolute;
+    top: -100px;
+    
+    background-color: black;
+    width: auto;
+    height: auto;
+    padding: 10px 20px;
+    border-radius: 1rem;
+    
+    font-family: Arial;
+    color: white;
+    
+    opacity: 0;
+    transition: opacity 500ms ease-out;
+
+    margin: 0px;
+}
+.box:has(.range:active) .inputValueViewer {
+    opacity: 1;
 }
 .input-range {
     position: absolute;
@@ -55,18 +76,18 @@ body {
     width: 100%;
     height: 1px;
 }
-.input-range:nth-child(1) {
+.input-range:nth-of-type(1) {
     top: -10%;
 }
-.input-range:nth-child(2) {
+.input-range:nth-of-type(2) {
     transform: rotate(90deg);
 
     right: -60%;
 }
-.input-range:nth-child(3) {
+.input-range:nth-of-type(3) {
     top: 110%;
 }
-.input-range:nth-child(4) {
+.input-range:nth-of-type(4) {
     transform: rotate(90deg);
 
     left: -60%;
@@ -83,6 +104,7 @@ body {
     
     pointer-events: none;
 }
+
 .input-range .range::-webkit-slider-thumb {
     background-color: rgb(240,150,150);
     width: 15px;
