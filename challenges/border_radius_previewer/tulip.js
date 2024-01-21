@@ -1,11 +1,3 @@
-let infos = (function(){
-
-
-
-
-    return {}
-})();
-
 ;(function(){
     [...document.querySelectorAll(".range")].forEach(
         (input) => {
