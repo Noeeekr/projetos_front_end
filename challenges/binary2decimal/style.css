@@ -1,5 +1,9 @@
 @charset "UTF-8";
 
+:root {
+    --messageTopPosition: 10px;
+    --messageLeftPosition: 10px;
+}
 body {
     padding: 0px;
 
@@ -18,6 +22,40 @@ body {
     height: 100vh;
 
     margin: 0px;
+}
+.message {
+    position: absolute;
+    top: var(--messageTopPosition);
+    left: var(--messageLeftPosition);
+
+    background-color: rgb(60,0,60);
+    width: 220px;
+    height: 80px;
+    box-sizing: border-box;
+        padding: 10px;
+    border-radius: 10px;
+
+    opacity: 0;
+
+    font-size: 14px;
+    color: white;
+
+    transition: opacity 100ms linear;
+}
+.message::before {
+    position: absolute;
+    top: 100%;
+    left: 15px;
+    
+    content: "";
+
+    width: 0px;
+    height: 0px;
+    border-left: solid 10px transparent;
+    border-right: solid 10px transparent;
+    border-top: solid 10px rgb(60,0,60);
+    border-bottom: solid 10px transparent;
+
 }
 .bin2dec_conversor {
     display: flex;

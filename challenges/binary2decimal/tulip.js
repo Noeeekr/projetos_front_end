@@ -4,21 +4,33 @@
         bin2decimal
     );
 })();
-
+let message_interval = false;
+// extra features;
 function selectNextInputFeature(inputArray,inputsFilled) {   
     inputArray.forEach((input) => {
         input.addEventListener("input",function(e){feature(e)})
     });
 
     function feature(event) {
-        let inputArray = [...event.target.parentElement.children];
-        let length = inputArray.indexOf(event.target);
-
-        if (checkInputs(inputArray)) {
-            inputsFilled(inputArray);
+        if (!isBinary(parseInt(event.target.value))) {
+            cleanInputs([event.target]);
+            showMessage(event.target);
             return;
         }
-        if (inputArray.length !== length + 1) inputArray[length + 1].focus();
+
+        let inputArray = [...event.target.parentElement.children];
+        let currentIndex = inputArray.indexOf(event.target);
+
+        if (checkInputs(inputArray)) {
+            inputsFilled(inputArray); // for when all inputs are filled;
+            return;
+        }
+        
+        if (currentIndex === inputArray.length - 1){
+            inputArray[0].focus()
+        }
+
+        if (inputArray.length !== currentIndex + 1) inputArray[currentIndex + 1].focus();
     };
 }
 function checkInputs(inputArray) {
@@ -26,10 +38,29 @@ function checkInputs(inputArray) {
         return input.value !== "";
     })
 }
-function cleanInputs(inputs) {
-    inputs.forEach((input) => {
+function cleanInputs(inputArray) {
+    inputArray.forEach((input) => {
         input.value = "";
     })
+}
+function showResult(sum) {
+    document.querySelector(".bin2dec_resultViewer .result").textContent = sum;
+}
+function showMessage(input) {
+    if (message_interval) clearInterval(message_interval);
+
+    let {x,y} = input.getBoundingClientRect();
+    let message = document.getElementById("wrongInputMessage");
+        message.style.opacity = 1;
+        message.style.setProperty("--messageTopPosition",`${y - message.getBoundingClientRect().height - 20}px`);
+        message.style.setProperty("--messageLeftPosition",`${x - 10}px`);
+    
+    message_interval = setTimeout(function(){message.style.opacity = 0},1000)
+}
+// actual bin2dec conversor;
+function isBinary(number) {
+    if (number !== 1 && number !== 0) return false;
+    return true;
 }
 function bin2decimal(inputArray) {
     let binaryValues = inputArray.map((input) => {return parseInt(input.value)});
@@ -39,14 +70,6 @@ function bin2decimal(inputArray) {
         if (binaryValues[i] === 1) sum += 2 ** j;
     }
 
-    console.log(sum);
-
+    showResult(sum);
     cleanInputs(inputArray);
 }
-// add a check result button for mobile users
-
-// add popup message when people insert a value bigger 
-// or smaller than expected and
-// remove the min/max value after that in html input;
-
-// add the func that shows result
