@@ -1,6 +1,6 @@
 let infos = (function(){
     let currentMath = [""]; // holds the current math numbers and operators for view and calc;
-    let currentValue = null; // holds the current value of the math for view;
+    let currentValue = [""]; // holds the current value of the math for view;
     let calc = null; // copy of current math that's used to process the operations;
     let operationPriority = {
         "+": 1,
@@ -17,12 +17,21 @@ let infos = (function(){
         "click",
         mathController
     )
+    addButtonListener(
+        [...document.querySelectorAll(".result .removeButton")],
+        "click",
+        removeParent
+    )
 })();
 
 // DOM handlers;
 function addButtonListener(buttonArray,event,func) {
-    buttonArray.forEach((button) => {button.addEventListener(event,func)})
+    buttonArray.forEach((button) => {button.addEventListener(event,function(e){func(e)})})
 }
+function removeParent(event) {
+    event.target.parentElement.remove();
+}
+
 function renderMath() {
     let renderEntireCalc = document.querySelector(".currentCalc");
     let renderResult = document.querySelector(".currentResult");
@@ -34,15 +43,18 @@ function renderMath() {
 }
 function addOlderResult() {
     let olderResultLocal = document.querySelector(".olderResults .result.currentResult");
-    let olderResult = `<div class="result">${infos.currentValue}</div>`
+    let olderResult = document.createElement("li");
+        olderResult.className = "result";
+        olderResult.innerHTML = `${infos.currentValue}<div class="removeButton">X</div>`;
+        addButtonListener([olderResult],"click",removeParent);
 
-    olderResultLocal.insertAdjacentHTML("afterend",olderResult);
+    olderResultLocal.after(olderResult);
 }
 
 // special button handlers;
 function cleanAll() {
     infos.currentMath = [""];
-    infos.currentValue = [""];
+    infos.currentValue = [];
     infos.calc = null;
 }
 function cleanLast() {
@@ -58,6 +70,8 @@ function cleanLast() {
     infos.currentMath[infos.currentMath.length - 1] = currentValueArray.join("");
 }
 function finishMath() {
+    if (infos.currentValue[0] === "") return;
+
     calc();
     addOlderResult();
     cleanAll();
@@ -68,10 +82,9 @@ function calc() {
     infos.calc = [...infos.currentMath];
 
     while (findOperation(infos.calc,2)) infos.calc = type2operation(infos.calc);
-
     while (findOperation(infos.calc,1)) infos.calc = type1operation(infos.calc);
 
-    infos.currentValue = infos.calc;
+    if (infos.calc.length === 1) infos.currentValue = infos.calc;
 }
 
 // operation handler;
@@ -93,32 +106,32 @@ function checkSpecialValues(buttonContent) {
 function findOperation(calc,priority) {
     let operation = calc.find((operation) => {if (operation.priority) return operation.priority === priority})
     let operationIndex = calc.findIndex((value) => {return value === operation});
-    
-    if (!(operation && calc[operationIndex + 1] && calc[operationIndex + 1])) return false;
 
+    if (!(operation && calc[operationIndex + 1] && calc[operationIndex + 1])) return false;
+    
     return [operationIndex,operation];
 }
 function type2operation(calc) {
     let [operationIndex,operation] = findOperation(calc,2);
 
-    if (calc[operationIndex - 1] && calc[operationIndex + 1]) {
-        let result = operation.value === "X" ? multiply(calc[operationIndex -1],calc[operationIndex + 1]) : divide(calc[operationIndex -1],calc[operationIndex + 1]);
-    
-        calc[operationIndex + 1] = result;
-        calc.splice(operationIndex - 1,operationIndex + 1)
-    }
+    if (!(calc[operationIndex - 1] && calc[operationIndex + 1])) return;
+
+    let result = operation.value === "X" ? multiply(calc[operationIndex -1],calc[operationIndex + 1]) : divide(calc[operationIndex -1],calc[operationIndex + 1]);
+
+    calc.splice(operationIndex - 1,3,result);
 
     return calc;
 }
 function type1operation(calc) {
     let [operationIndex,operation] = findOperation(calc,1);
 
-    if (calc[operationIndex - 1] && calc[operationIndex + 1]) {
-        let result = operation.value === "+" ? sum(calc[operationIndex -1],calc[operationIndex + 1]) : decrease(calc[operationIndex -1],calc[operationIndex + 1]);
+    if (!(calc[operationIndex - 1] && calc[operationIndex + 1])) return;
+
+    let result = operation.value === "+" ? sum(calc[operationIndex -1],calc[operationIndex + 1]) : decrease(calc[operationIndex -1],calc[operationIndex + 1]);
+
+    calc[operationIndex - 1] = result;    
     
-        calc[operationIndex + 1] = result;
-        calc.splice(operationIndex - 1,operationIndex + 1)
-    }
+    calc.splice(operationIndex,operationIndex + 1)
 
     return calc;
 }
@@ -139,9 +152,11 @@ function addOperation(currentValue,buttonContent) {
 
 // calculator controller
 function mathController(event) {
-    let buttonContent_isNumber = parseInt(event.target.textContent) ? true : false;
+    let buttonContent_isNumber = parseInt(event.target.textContent) || parseInt(event.target.textContent) === 0 ? true : false;
     let buttonContent = parseInt(event.target.textContent) ? parseInt(event.target.textContent) : event.target.textContent;
     
+    if (buttonContent === 0) buttonContent = "0";
+
     if (checkSpecialValues(buttonContent)) {
         calc() 
         renderMath()
@@ -152,7 +167,7 @@ function mathController(event) {
 
     if (buttonContent_isNumber && currentValue.length > 7) return; // number size limit;
     if (!buttonContent_isNumber && infos.currentMath[0].length === 0) return; // no start with operations;
-    
+
     buttonContent_isNumber ? addNumber(buttonContent) : addOperation(currentValue,buttonContent); 
     
     calc()
@@ -171,6 +186,3 @@ function sum(a,b) {
 function decrease(a,b) {
     return parseFloat(a) - parseFloat(b);
 }
-
-
-// fix zero value bug
