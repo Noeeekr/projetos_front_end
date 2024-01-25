@@ -1,0 +1,203 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(240,240,240);
+
+    padding: 0px;
+
+    margin: 0px;
+}
+
+.content {
+    background-color: rgb(225,225,225);
+    width: 90vw;
+    max-width: 1200px;
+    height: auto;
+    box-sizing: border-box;
+        padding: 5% 5%;
+    box-shadow: rgb(0,0,0,0.4) 0px 0px 2vw;
+
+    margin: 5% auto;
+}
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background-color: rgb(160,0,0);
+    width: 100%;
+    height: auto;
+        min-height: 30vw;
+        max-height: 400px;
+    box-shadow: rgba(0,0,0,0.5) 0px 0px 2vw;
+
+    margin: 5% auto;
+}
+.header .title {
+    font-size: min(150px,5vw);
+    font-family: Georgia;
+    text-align: center;
+
+    color: rgb(255,255,255,0.7);
+    
+    user-select: none;
+}
+
+.formSection {
+    width: 100%;
+    height: auto;
+
+    margin: 5% auto;
+}
+.formSection .title {
+    border-bottom: solid 0.5vw rgb(220,80,80);
+
+    font-family: Arial;
+    font-weight: 400;
+    font-size: min(150px,5vw);
+    color: rgb(220,80,80);
+
+    margin: 3% 0px 0px 0px;
+}
+
+.form.addAlunoForm {
+    background-color: rgb(0,0,0,0.1);
+    width: 100%;
+    box-sizing: border-box;
+        padding: 2vw 2vw;
+
+    margin: 0px auto;
+}
+.form.addAlunoForm .title {    
+    font-size: 3vw;
+    color: rgb(0,0,0,0.3);
+
+    border-bottom: none;
+
+    margin: 0px;
+}
+.form.addAlunoForm .inputHolder {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    width: 100%;
+    height: auto;
+}
+.form.addAlunoForm .addStudent {
+    background-color: transparent;
+    width: 80%;
+    height: 4vw;
+    border: none;
+        border-bottom: solid 0.4vw rgb(0,0,0,0.3);
+    outline: none;
+
+    font-size: 2vw;
+
+    flex: 0 0 auto;
+
+    transition: border-bottom 100ms linear;
+
+    margin: 2vw auto 2vw 0px;
+}
+.form.addAlunoForm .addStudent:focus {
+    border-bottom: solid 0.4vw rgb(50,50,50);
+}
+.form.addAlunoForm .submit {
+    background-color: rgb(57, 237, 153);
+    width: 6vw;
+    height: 6vw;
+    border: none;
+    border-radius: 100%;
+    box-shadow: rgb(0,0,0,0.4) 0px 0px 6px;
+
+    font-size: 4.5vw;
+    color: rgba(0,0,0,0.5);
+
+    transform: scale(1.0);
+    transition: transform 100ms linear, color 100ms linear, background-color 100ms linear;
+
+    flex: 0 0 auto;
+
+    margin: 2vw auto 2vw 0px;
+}
+.form.addAlunoForm .submit:hover {
+    background-color: rgb(47, 217, 133);
+
+    transform: scale(1.1);
+
+    color: rgba(0,0,0,0.8);
+}
+
+.reportSection {
+    width: 100%;
+    height: auto;
+
+    overflow-x: auto;
+}
+.reportSearch {
+    width: 100%;
+    box-sizing: border-box;
+        padding: 2vw 2vw;
+
+    margin: 0px auto; 
+}
+.reportSearch .title {
+    border-bottom: none;
+    
+    font-family: Arial;
+    font-weight: 400;
+    font-size: 3vw;
+    color: rgb(0,0,0,0.4);
+
+    margin: 2vw 0vw;
+}
+.reportSearch .searchStudent {    
+    background-color: transparent;
+    width: 80%;
+    height: 4vw;
+    border: none;
+        border-bottom: solid 0.4vw rgb(0,0,0,0.3);
+    outline: none;
+
+    font-size: 2vw;
+
+    transition: border-bottom 100ms linear;
+
+    margin: 2vw auto 2vw 0px;
+}
+.reportSearch .searchStudent:focus {
+    border-bottom: solid 0.4vw rgb(50,50,50);
+}
+.studentsReport {    
+    width: 100%;
+    height: auto;
+    border-spacing: 0px;
+}
+.studentsReport .thead {
+    width: 100%;
+    height: auto;
+}
+.studentsReport .thead .td {
+    width: auto;
+    padding: 1vw 1vw;
+    
+    font-family: Arial;
+    font-size: 2.4vw;
+    color: rgba(0,0,0,0.7);
+
+    flex: 1;
+}
+.studentsReport .tbody .td {
+    width: auto;
+    padding: 1vw 1vw;
+    
+    font-family: Arial;
+    font-size: 2.4vw;
+    color: rgba(0,0,0,0.7);
+
+    flex: 1;
+}
+.studentsReport .tbody .student:nth-of-type(odd) .td {
+    background-color: rgb(0,0,0,0.1);
+}
