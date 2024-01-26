@@ -4,11 +4,14 @@ class AlunoService {
 
         this.view = view;
         this.model = model;
-        this.lastId = 0;
+        this.lastId = 0; // should come from database
     }
 
-    renderStudent(id) {
-        this.view.render(this.students[id]);
+    renderHeader(subjects) {
+        this.view.renderHeader(subjects);
+    }
+    renderStudent(studentInfo) {
+        this.view.renderStudent(studentInfo);
     }
     findStudents(id) {
         return this.students[id];

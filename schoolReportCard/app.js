@@ -1,7 +1,5 @@
 // students array contains: an name, an object holding the subjects;
-let students = [
-    {name: "Andy", subjects: {"Matematica": 1.0,"Geografia": 1.0,"Portugues": 1.0,"Inglês": 1.0,"Francês": 1.0}}
-];
+const students = [];
 
 // delete this later; infos should come from local storage/database;
 const names = ['John', 'Steve', 'Marc', 'Franklin', 'Isaac', 'Vincent', 'Edwin','Ashlyn', 'Anthony', 'Alia', 'Abby', 'Francesca'];
@@ -12,12 +10,23 @@ for (let i = 0; i < 100; i++) {
         name: names[Math.floor(Math.random() * names.length)],
         subjects: 
             {
-                "Geografia": Math.floor(Math.random() * 11),
-                "Matematica": Math.floor(Math.random() * 11),
-                "Portugues": Math.floor(Math.random() * 11),
-                "Inglês": Math.floor(Math.random() * 11),
-                "Francês": Math.floor(Math.random() * 11)
+                "GEOGRAFIA": Math.floor(Math.random() * 11),
+                "MATEMATICA": Math.floor(Math.random() * 11),
+                "PORTUGUES": Math.floor(Math.random() * 11),
+                "INGLES": Math.floor(Math.random() * 11),
+                "FRANCES": Math.floor(Math.random() * 11)
             }
         }
     )
 }
+
+let renderLocal = document.querySelector("table.studentsReport");
+
+let alunosView = new AlunoView(renderLocal);
+let alunosModel = new AlunoModel(students,subjects);
+let alunosService = new AlunoService(alunosView,alunosModel);
+
+alunosService.renderHeader(["Matematica","portugues","biologia"]);
+students.forEach((student) => {
+    alunosService.renderStudent(student);
+})
