@@ -1,8 +1,19 @@
-class AlunoView {
+// *IMPORTANT* if a student grade doesn't exist in header it wont be loaded;
+// *IMPORTANT* only grades that are relevant to the course will be loaded;
+// *IMPORTANT* do something about it andy, don't leave it like that;
+
+
+// please watch the two view videos again and redo this later using .map();
+// or something, make it efficient.
+
+class StudentView {
     constructor(renderLocal) {
         this.table = renderLocal;
         this.thead = renderLocal.children[0];
         this.tbody = renderLocal.children[1];
+    }
+    clearBody() {
+        this.tbody.innerHTML = "";
     }
 
     renderHeader(subjects) {
@@ -44,6 +55,3 @@ class AlunoView {
         this.tbody.innerHTML += student;
     }
 }
-// create a view;
-// create a view.render method;
-// it should recieve a id as param;

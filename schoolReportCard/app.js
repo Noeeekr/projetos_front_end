@@ -1,13 +1,13 @@
-// students array contains: an name, an object holding the subjects;
-const students = [];
+let studentsInfo = [];
 
 // delete this later; infos should come from local storage/database;
+// delete this later; instead of being generated like this;
+const subjects = ["geografia","fisica","ingles","frances","portugues","matematica"];
 const names = ['John', 'Steve', 'Marc', 'Franklin', 'Isaac', 'Vincent', 'Edwin','Ashlyn', 'Anthony', 'Alia', 'Abby', 'Francesca'];
-const subjects = ["Geografia","Matematica","Portugues","Inglês","Francês"];
 for (let i = 0; i < 100; i++) {
-    students.push(
+    studentsInfo.push(
         {
-        name: names[Math.floor(Math.random() * names.length)],
+        name: names[Math.floor(Math.random() * names.length)] + " " + names[Math.floor(Math.random() * names.length)],
         subjects: 
             {
                 "GEOGRAFIA": Math.floor(Math.random() * 11),
@@ -19,14 +19,63 @@ for (let i = 0; i < 100; i++) {
         }
     )
 }
-
+// report section load ;
 let renderLocal = document.querySelector("table.studentsReport");
+let studentView = new StudentView(renderLocal);
 
-let alunosView = new AlunoView(renderLocal);
-let alunosModel = new AlunoModel(students,subjects);
-let alunosService = new AlunoService(alunosView,alunosModel);
+let studentService = new StudentService(studentView);
+    studentService.renderHeader(subjects);
 
-alunosService.renderHeader(["Matematica","portugues","biologia"]);
-students.forEach((student) => {
-    alunosService.renderStudent(student);
+studentsInfo.forEach((student) => {
+    studentService.addStudent(new StudentModel(student));
 })
+
+for (let id in studentService.students) {
+    studentService.renderStudent(id);
+}
+
+// search mechanism ;
+function searchStudent(event) {
+    let searchInput = event.target || event;
+    if (searchInput.value.length < 3 && searchInput.value !== "") return;
+
+    [...document.querySelectorAll(".studentsReport .tbody .student")].forEach((student) => {
+        if (student.querySelector(".td").textContent.search(`${searchInput.value}`) === -1) {
+            student.style = `display: none`;
+            return;
+        }
+        student.style = " ";
+    })
+}
+let searchMechanism = document.querySelector(".reportSearch .searchStudent");
+    searchMechanism.addEventListener("input",(e) => {searchStudent(e)})
+
+// add student mechanism ;
+function addStudent(event) {
+    event.preventDefault()
+
+    let nameInput = event.target.querySelector(".addStudent");
+    if (nameInput.value.length < 3) return; // should make it show a message if possible;
+
+    let student = new StudentModel({
+        name: nameInput.value,
+        subjects: {}
+    });
+
+    nameInput.value = "";
+
+    studentService.addStudent(student);
+    studentService.renderStudent(student.id);
+}
+
+let addForm = document.querySelector(".addAlunoForm");
+    addForm.addEventListener("submit",(e) => {addStudent(e)});
+
+//
+// ********* to do area
+// 
+// add student feature
+// edit student page
+// edit student js mvc
+// ...session storage && local storage
+//

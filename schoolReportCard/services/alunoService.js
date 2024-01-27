@@ -1,24 +1,23 @@
-class AlunoService {
-    constructor(view,model) {
+class StudentService {
+    constructor(view) {
         this.students = {};
 
         this.view = view;
-        this.model = model;
-        this.lastId = 0; // should come from database
     }
 
     renderHeader(subjects) {
         this.view.renderHeader(subjects);
     }
-    renderStudent(studentInfo) {
-        this.view.renderStudent(studentInfo);
+    renderStudent(id) {
+        this.view.renderStudent(this.students[id]);
+    }
+    clearBody() {
+        this.view.clearBody();
     }
     findStudents(id) {
         return this.students[id];
     }
     addStudent(studentModel) {
-        this.students[this.lastId + 1] = studentModel;
-        
-        this.lastId++;
+        this.students[studentModel.id] = studentModel;
     }
 }

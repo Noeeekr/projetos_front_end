@@ -194,8 +194,11 @@ body {
     border-bottom: solid 4px rgb(50,50,50);
 }
 .studentsReport {    
+    background-color: rgb(0,0,0,0.05);
     width: 100%;
     height: auto;
+        min-height: 200px;
+
     border-spacing: 0px;
 }
 .studentsReport .thead {
