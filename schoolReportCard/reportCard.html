@@ -4,18 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>School report</title>
+    <link rel="stylesheet" type="text/css" href="css/globalStyle.css">
     <link rel="stylesheet" type="text/css" href="css/reportStyle.css">
 </head>
 <body>
     <div class="content">
         <div class="header">
-            <h1 class="title">Administração</h1>
+            <h1 class="title">Boletim de notas</h1>
         </div>
-        <div class="formSection">
+        <div class="infoSection">
             <h2 class="title">Dados de Alunos</h2>
             <form class="form addAlunoForm">
-                <h5 class="title">Adicionar aluno</h5>
-                <div class="inputHolder">
+                <label for="addAlunoForm_nameInput" class="title">Adicionar aluno</label>
+                <div id="addAlunoForm_nameInput" class="inputHolder">
                     <input type="text" placeholder="insira o nome do aluno" class="addStudent">
                     <button class="submit">+</button>
                 </div>
@@ -23,8 +24,8 @@
         </div>
         <div class="reportSection">
             <div class="reportSearch">
-                <h5 class="title">Buscar aluno</h5>
-                <input type="text" placeholder="insira o nome do aluno" class="searchStudent">
+                <label for="searchStudent" class="title">Buscar aluno</label>
+                <input id="searchStudent" type="text" placeholder="insira o nome do aluno" class="searchStudent">
             </div>
 
             <table class="studentsReport">

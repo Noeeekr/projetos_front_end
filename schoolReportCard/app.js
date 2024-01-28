@@ -74,8 +74,11 @@ let addForm = document.querySelector(".addAlunoForm");
 //
 // ********* to do area
 // 
-// add student feature
 // edit student page
 // edit student js mvc
 // ...session storage && local storage
+// new feature: editar quais notas você quer que apareçam no header
+// since all the subjects that are shown are the one predefined the instructor
+// should have the flexibility to search for the ones that are not in the grade and
+// add them to it
 //

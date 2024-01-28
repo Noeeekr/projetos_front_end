@@ -1,101 +1,5 @@
 @charset "UTF-8";
 
-html {
-    background-color: rgb(240,240,240);
-
-    font-size: 0.9rem;
-}
-body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: rgb(240,240,240);
-    width: 100vw;
-    height: auto;
-        min-height: 100vh;
-    padding: 0px;
-
-    overflow-x: hidden;
-
-    margin: 0px;
-}
-
-.content {
-    background-color: rgb(225,225,225);
-    width: 90vw;
-    max-width: 900px;
-    height: auto;
-    box-sizing: border-box;
-        padding: 40px 40px;
-    box-shadow: rgb(0,0,0,0.4) 0px 0px 2vw;
-
-    overflow-x: hidden;
-
-    font-size: 40px;
-
-    margin: 0px auto;
-}
-.header {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background-color: rgb(160,0,0);
-    width: 100%;
-        max-width: 900px;
-    height: auto;
-        min-height: 200px;
-        max-height: 300px;
-    box-shadow: rgba(0,0,0,0.5) 0px 0px 2vw;
-
-    margin: 40px auto;
-}
-.header .title {
-    font-size: 3rem;
-    font-family: Georgia;
-    text-align: center;
-
-    color: rgb(255,255,255,0.7);
-    
-    user-select: none;
-}
-
-.formSection {
-    width: 100%;
-    height: auto;
-
-    margin: 40px auto;
-}
-.formSection .title {
-    border-bottom: solid 0.5vw rgb(220,80,80);
-
-    font-family: Arial;
-    font-weight: 400;
-    font-size: 40px;
-    color: rgb(220,80,80);
-
-    margin: 3% 0px 0px 0px;
-}
-
-.form.addAlunoForm {
-    background-color: rgb(0,0,0,0.1);
-    width: 100%;
-    box-sizing: border-box;
-        padding: 2vw 2vw;
-
-    overflow-x: hidden;
-
-    margin: 0px auto;
-}
-.form.addAlunoForm .title {    
-    font-size: 1.8rem;
-    color: rgb(0,0,0,0.3);
-
-    border-bottom: none;
-
-    margin: 10px 10px 0px 10px;
-}
 .form.addAlunoForm .inputHolder {
     display: flex;
     justify-content: center;
@@ -104,29 +8,8 @@ body {
     width: 100%;
     height: auto;
 }
-.form.addAlunoForm .addStudent {
-    background-color: transparent;
-    width: 80%;
-    height: auto;
-    box-sizing: border-box;
-        padding: 5px;
-        border: none;
-        border-bottom: solid 4px rgb(0,0,0,0.3);
-    outline: none;
-
-    font-size: 24px;
-
-    flex: 0 0 auto;
-
-    transition: border-bottom 100ms linear;
-
-    margin: 20px auto 20px 0px;
-}
-.form.addAlunoForm .addStudent:focus {
-    border-bottom: solid 4px rgb(50,50,50);
-}
 .form.addAlunoForm .submit {
-    background-color: rgb(57, 237, 153);
+    background-color: var(--complementary);
     width: 60px;
     height: 60px;
     border: none;
@@ -144,19 +27,13 @@ body {
     margin: 20px auto 20px 0px;
 }
 .form.addAlunoForm .submit:hover {
-    background-color: rgb(47, 217, 133);
+    background-color: var(--complementaryDark);
 
     transform: scale(1.1);
 
     color: rgba(0,0,0,0.8);
 }
 
-.reportSection {
-    width: 100%;
-    height: auto;
-
-    overflow-x: auto;
-}
 .reportSearch {
     width: auto;
     box-sizing: border-box;
@@ -174,81 +51,8 @@ body {
 
     margin: 20px 0px;
 }
-.reportSearch .searchStudent {    
-    background-color: transparent;
-    width: 80%;
-    height: auto;
-    box-sizing: border-box;
-        padding: 5px;
-        border: none;
-        border-bottom: solid 4px rgb(0,0,0,0.3);
-    outline: none;
 
-    font-size: 24px;
 
-    transition: border-bottom 100ms linear;
-
-    margin: 20px auto 20px 0px;
-}
-.reportSearch .searchStudent:focus {
-    border-bottom: solid 4px rgb(50,50,50);
-}
-.studentsReport {    
-    background-color: rgb(0,0,0,0.05);
-    width: 100%;
-    height: auto;
-        min-height: 200px;
-
-    border-spacing: 0px;
-}
-.studentsReport .thead {
-    width: 100%;
-    height: auto;
-}
-.studentsReport .thead .td {
-    width: auto;
-    padding: 10px 10px;
-    
-    text-transform: capitalize;
-    font-family: Arial;
-    font-size: 20px;
-    color: rgba(0,0,0,0.7);
-
-    flex: 1;
-}
-.studentsReport .tbody .td {
-    width: auto;
-    padding: 10px 10px;
-    
-    font-family: Arial;
-    font-size: 20px;
-    color: rgba(0,0,0,0.7);
-
-    flex: 1;
-}
 .studentsReport .tbody .student:nth-of-type(odd) .td {
     background-color: rgb(0,0,0,0.1);
-}
-
-
-@media screen and (max-width: 700px) {
-
-}
-@media screen and (max-width: 500px) {
-    html {
-        font-size: 0.7rem;
-    }
-    .content {
-        width: 100%;
-        padding: 0px;
-        box-shadow: none;
-
-        margin: 0px;
-    }
-    .header {
-        width: 100%;
-        max-width: none;
-
-        margin: 0px;
-    }
 }

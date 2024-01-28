@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="css/globalStyle.css">
+    <link rel="stylesheet" type="text/css" href="css/editStyle.css">
+    <title>edit page</title>
+</head>
+<body>
+    <div class="content">
+        <div class="header">
+            <h1 class="title">Editar notas</h1>
+        </div>
+        <div class="infoSection">
+            <h2 class="title">Detalhe do Aluno</h2>
+            <form class="form addAlunoForm">
+                <label for="addAlunoForm_nameInput" class="title">Nome ou ID do Aluno</label>
+                
+                <div class="buttonHolder">
+                    <input type="text" placeholder="Insira o nome ou ID do aluno" class="addStudent">
+                    <button value="searchStudent" class="button" >Procurar</button>
+                </div>
+
+                <h5 class="title">Notas por matéria (clique na matéria para editar)</h5>
+                <div class="reportSection">
+        
+                    <table class="studentsReport">
+                        <thead class="thead">
+        
+                            <tr class="student">
+                                <td class="td">Nome</td>
+                                <td class="td">Geografia</td>
+                                <td class="td">Matematica</td>
+                                <td class="td">Portugues</td>
+                                <td class="td">Inglês</td>
+                                <td class="td">Francês</td>
+                            <tr class="student">
+                                
+                        </thead>
+                        <tbody class="tbody">
+
+                            <tr class="student info">
+                                <td class="td">Yuval Noah Harari</td>
+                                <td class="td">9.0</td>
+                                <td class="td">8.0</td>
+                                <td class="td">7.0</td>
+                                <td class="td">9.0</td>
+                                <td class="td">7.0</td>
+                            </tr>
+
+                        </tbody>
+    
+
+                    </table>
+                </div>
+                
+
+            <label for="addSubject" class="title">Adicione uma matéria</label>
+            <input id="addSubject" type="text" placeholder="Insira o nome da matéria" class="addStudent">
+
+            <div class="buttonHolder submit">
+                <button value="add" class="button">Adicionar Matéria</button>
+                <button value="update" class="button">Atualizar Grade</button>
+            </div>
+            </form>    
+        </div>
+    </div>
+<!--
+    a local to add new subjects for that student should be created;
+
+    every inputHolder should be loaded via js 
+    its subject value will be important later for search purposes
+    every subject should be loaded via js
+    every input should be only readable
+    until someone click on it (a pop up will show up)
+    and ask if you want to change this grade;
+    grades should be empty;
+-->
+</body>
+</html>
