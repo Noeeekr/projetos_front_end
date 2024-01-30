@@ -19,7 +19,6 @@ class StudentService {
     }
     addStudent(studentModel) {
         this.students[studentModel.id] = studentModel;
-        
         localStorage.setItem("studentsData",JSON.stringify(this.students));
     }
     removeStudent(id) {

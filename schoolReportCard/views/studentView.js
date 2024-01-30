@@ -30,14 +30,14 @@ class StudentView {
 
     renderStudent(studentInfo) {
         let headerSubjects = this.thead.querySelectorAll("tr .td");
-        let {name,subjects} = studentInfo;
+        let {name,subjects,id} = studentInfo;
 
         let studentGradesHTML = []; 
             studentGradesHTML.push(`<td class="td">${name}</td>`)
         
         for (let subject of headerSubjects) {
             if (!(headerSubjects[0].textContent.toUpperCase() === subject.textContent.toUpperCase())) {
-                subject = subjects[subject.textContent.toUpperCase()] > -1 ? subjects[subject.textContent.toUpperCase()] : `<a href="edit.html?id=${"mudar isso depois"}">adicionar nota</a>`;
+                subject = subjects[subject.textContent.toUpperCase()] > -1 ? subjects[subject.textContent.toUpperCase()] : `<a href="edit.html?id=${id}">adicionar nota</a>`;
                 studentGradesHTML.push(`<td class="td">${subject}</td>`)
             }
         }

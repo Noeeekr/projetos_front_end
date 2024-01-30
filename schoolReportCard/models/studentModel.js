@@ -10,8 +10,8 @@ class StudentModel {
     }
     
     generateId(students) {   
-        for (let student in students) {
-            if (student.id && student.id > biggestId) biggestId = student.id;
+        for (let id in students) {
+            if (id > biggestId) biggestId = parseInt(id);
         }
 
         biggestId = biggestId + 1;

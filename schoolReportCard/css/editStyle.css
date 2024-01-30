@@ -23,6 +23,8 @@ tbody td:hover::before {
 .form.addAlunoForm {
     display: flex;
     flex-direction: column;
+    
+    margin-bottom: 20px;
 }
 .form .buttonHolder {
     display: flex;
@@ -30,11 +32,19 @@ tbody td:hover::before {
     justify-content: flex-start;
     flex-direction: row;
     gap: 20px;
+
+    background-attachment: fixed;
+    width: 100%;
+}
+.form .buttonHolder.addSubject {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0px;
 }
 .form .buttonHolder.submit {
     margin: 0px 0px auto auto;
 }
-.form .buttonHolder .button {
+.buttonHolder .button {
     position: relative;
 
     background-color: var(--complementaryDarker);

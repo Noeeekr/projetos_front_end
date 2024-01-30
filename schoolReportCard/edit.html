@@ -17,7 +17,7 @@
             <form class="form addAlunoForm">
                 <label for="addAlunoForm_nameInput" class="title">Nome ou ID do Aluno</label>
                 
-                <div class="buttonHolder">
+                <div class="buttonHolder searchStudent">
                     <input type="text" placeholder="Insira o nome ou ID do aluno" class="addStudent">
                     <button value="searchStudent" type="button" class="button" >Procurar</button>
                 </div>
@@ -54,16 +54,19 @@
 
                     </table>
                 </div>
-                
-
-            <label for="addSubject" class="title">Adicione uma matéria</label>
-            <input id="addSubject" type="text" placeholder="Insira o nome da matéria" class="addStudent">
-
-            <div class="buttonHolder submit">
-                <button value="add" class="button">Adicionar Matéria</button>
-                <button value="update" class="button">Atualizar Grade</button>
-            </div>
             </form>    
+            <form method="get" class="form addSubject">
+                <div class="buttonHolder addSubject">
+                    <label for="addSubject" class="title">Adicione uma grade para o estudante</label>
+                    <input id="addSubject" type="text" placeholder="Insira o nome da matéria" class="addStudent"/>
+                </div>
+            </form> 
+            <form method="get" class="form updateInfo">
+                <div class="buttonHolder submit">
+                    <button value="add" class="button">Adicionar Matéria</button>
+                    <button value="update" class="button">Atualizar Grade</button>
+                </div>
+            </form>
         </div>
     </div>
 <!--
