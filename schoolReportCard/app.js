@@ -1,46 +1,27 @@
-let studentsInfo = [];
+const studentsInfo = JSON.parse(localStorage.getItem("studentsData"));
 
-// delete this later; infos should come from local storage/database;
 // delete this later; instead of being generated like this;
-const subjects = ["geografia","fisica","ingles","frances","portugues","matematica"];
-const names = ['John', 'Steve', 'Marc', 'Franklin', 'Isaac', 'Vincent', 'Edwin','Ashlyn', 'Anthony', 'Alia', 'Abby', 'Francesca'];
-for (let i = 0; i < 100; i++) {
-    studentsInfo.push(
-        {
-        name: names[Math.floor(Math.random() * names.length)] + " " + names[Math.floor(Math.random() * names.length)],
-        subjects: 
-            {
-                "GEOGRAFIA": Math.floor(Math.random() * 11),
-                "MATEMATICA": Math.floor(Math.random() * 11),
-                "PORTUGUES": Math.floor(Math.random() * 11),
-                "INGLES": Math.floor(Math.random() * 11),
-                "FRANCES": Math.floor(Math.random() * 11)
-            }
-        }
-    )
-}
-// report section load ;
-let renderLocal = document.querySelector("table.studentsReport");
-let studentView = new StudentView(renderLocal);
+const subjects = {"geografia": true,"fisica": true,"ingles": true,"frances": true,"portugues": true,"matematica": true};
 
+// report section load :
+
+let studentView = new StudentView(document.querySelector("table.studentsReport"));
 let studentService = new StudentService(studentView);
     studentService.renderHeader(subjects);
-
-studentsInfo.forEach((student) => {
-    studentService.addStudent(new StudentModel(student));
-})
-
+    studentService.students = studentsInfo;
+    
 for (let id in studentService.students) {
     studentService.renderStudent(id);
 }
 
-// search mechanism ;
+// search mechanism :
+
 function searchStudent(event) {
     let searchInput = event.target || event;
     if (searchInput.value.length < 3 && searchInput.value !== "") return;
 
     [...document.querySelectorAll(".studentsReport .tbody .student")].forEach((student) => {
-        if (student.querySelector(".td").textContent.search(`${searchInput.value}`) === -1) {
+        if (student.querySelector(".td").textContent.toUpperCase().search(`${searchInput.value.toUpperCase()}`) === -1) {
             student.style = `display: none`;
             return;
         }
@@ -66,19 +47,20 @@ function addStudent(event) {
 
     studentService.addStudent(student);
     studentService.renderStudent(student.id);
+    localStorage.setItem("editStudent",`${student.id}`);
 }
-
 let addForm = document.querySelector(".addAlunoForm");
     addForm.addEventListener("submit",(e) => {addStudent(e)});
 
 //
 // ********* to do area
 // 
-// edit student page
-// edit student js mvc
+//
+//
 // ...session storage && local storage
 // new feature: editar quais notas você quer que apareçam no header
 // since all the subjects that are shown are the one predefined the instructor
 // should have the flexibility to search for the ones that are not in the grade and
 // add them to it
-//
+// // what about making search feature a "enable search student in studentService, where it gets the local where search should be enabled"
+// feature: change what subjects are shown;

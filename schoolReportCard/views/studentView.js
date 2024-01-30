@@ -17,16 +17,12 @@ class StudentView {
     }
 
     renderHeader(subjects) {
-        let subjectsHtml = [];
-            subjectsHtml.push(`<td class="td">nome</td>`)
-        subjects.forEach((subject) => {
-            subjectsHtml.push(`<td class="td">${subject.toLowerCase()}</td>`)
-        })
-
         let headerContent = "";
-        subjectsHtml.forEach((subject) => {
-            headerContent += subject;
-        })
+            headerContent += `<td class="td">nome</td>`;
+
+        for (let subject in subjects) {
+            headerContent += (`<td class="td">${subject.toLowerCase()}</td>`)
+        }
 
         let header = `<tr class="student">${headerContent}</tr>`;
         this.thead.innerHTML = header;

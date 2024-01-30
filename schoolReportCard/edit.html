@@ -19,7 +19,7 @@
                 
                 <div class="buttonHolder">
                     <input type="text" placeholder="Insira o nome ou ID do aluno" class="addStudent">
-                    <button value="searchStudent" class="button" >Procurar</button>
+                    <button value="searchStudent" type="button" class="button" >Procurar</button>
                 </div>
 
                 <h5 class="title">Notas por matéria (clique na matéria para editar)</h5>
@@ -27,7 +27,7 @@
         
                     <table class="studentsReport">
                         <thead class="thead">
-        
+                            <!--
                             <tr class="student">
                                 <td class="td">Nome</td>
                                 <td class="td">Geografia</td>
@@ -36,10 +36,10 @@
                                 <td class="td">Inglês</td>
                                 <td class="td">Francês</td>
                             <tr class="student">
-                                
+                            -->
                         </thead>
                         <tbody class="tbody">
-
+                            <!--
                             <tr class="student info">
                                 <td class="td">Yuval Noah Harari</td>
                                 <td class="td">9.0</td>
@@ -48,7 +48,7 @@
                                 <td class="td">9.0</td>
                                 <td class="td">7.0</td>
                             </tr>
-
+                            -->
                         </tbody>
     
 
@@ -77,5 +77,11 @@
     and ask if you want to change this grade;
     grades should be empty;
 -->
+
+    <script src="views/studentView.js"></script>
+    <script src="services/studentService.js"></script>
+    <script src="models/studentModel.js"></script>
+    
+    <script src="edit.js"></script>
 </body>
 </html>
