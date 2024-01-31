@@ -3,6 +3,7 @@
 
 tbody td {
     cursor: pointer;
+    user-select: none;
 }
 tbody td:first-of-type {
     pointer-events: none;
@@ -69,7 +70,7 @@ tbody td:hover::before {
     top: 0;
     left: 0;
 
-    display: none;
+    display: flex;
     align-items: center;
     justify-content: center;
 
@@ -78,14 +79,19 @@ tbody td:hover::before {
     height: 100%;    
     
     backdrop-filter: blur(0px) grayscale(0);
+    opacity: 0;
 
-    transition: backdrop-filter 200ms linear;
+    pointer-events: none;
+    
+    transition: backdrop-filter 200ms linear, opacity 200ms linear;
     
     z-index: 2;
 }
 .changeGradePopupHolder.active {
-    display: flex;
     backdrop-filter: blur(39px) grayscale(0.5);
+    opacity: 1;
+
+    pointer-events: all;
 }
 .changeGradePopupHolder .changeGradePopup {
     background-color: rgb(230,230,230);
@@ -94,4 +100,17 @@ tbody td:hover::before {
         min-height: 300px;
     border-radius: 1rem;
     box-shadow: rgba(0,0,0,0.5) 0px 0px 25px 2px;
+
+    transform: scale(0.9);
+
+    transition: transform 200ms linear;
+}
+.changeGradePopupHolder.active .changeGradePopup {
+    transform: scale(1);
+}
+
+@media screen and (max-width: 500px) {
+    .changeGradePopupHolder .changeGradePopup {
+        border-radius: 0px;
+    }
 }

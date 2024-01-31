@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="content">
-        <div class="header">
+        <div class="main header">
             <h1 class="title">Editar notas</h1>
         </div>
         <div class="infoSection">
@@ -26,13 +26,13 @@
                 <div class="reportSection">
                     <div class="changeGradePopupHolder">
                         <div class="changeGradePopup">
-                            
+
                         </div>
                     </div>
                     <table class="studentsReport">
                         <thead class="thead">
                             <!--
-                            <tr class="student">
+                            <tr class="student header">
                                 <td class="td">Nome</td>
                                 <td class="td">Geografia</td>
                                 <td class="td">Matematica</td>
@@ -72,17 +72,6 @@
             </form>
         </div>
     </div>
-<!--
-    a local to add new subjects for that student should be created;
-
-    every inputHolder should be loaded via js 
-    its subject value will be important later for search purposes
-    every subject should be loaded via js
-    every input should be only readable
-    until someone click on it (a pop up will show up)
-    and ask if you want to change this grade;
-    grades should be empty;
--->
 
     <script src="views/studentView.js"></script>
     <script src="services/studentService.js"></script>

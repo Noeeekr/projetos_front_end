@@ -24,7 +24,7 @@ class StudentView {
             headerContent += (`<td class="td">${subject.toLowerCase()}</td>`)
         }
 
-        let header = `<tr class="student">${headerContent}</tr>`;
+        let header = `<tr class="student header">${headerContent}</tr>`;
         this.thead.innerHTML = header;
     }
 
@@ -35,11 +35,12 @@ class StudentView {
         let studentGradesHTML = ""; 
             studentGradesHTML += `<td class="td">${name}</td>`;
         
-        for (let subject of headerSubjects) {
+        for (let subjectLocal of headerSubjects) {
+            let subject = subjectLocal.textContent;
             // loads only the grades that are in header + compare them in uppercase for compatibility
-            if (!(headerSubjects[0].textContent.toUpperCase() === subject.textContent.toUpperCase())) {
-                subject = subjects[subject.textContent.toUpperCase()] > -1 ? subjects[subject.textContent.toUpperCase()] : `<a href="edit.html?id=${id}">adicionar nota</a>`;
-                studentGradesHTML += `<td class="td">${subject}</td>`;
+            if (!(headerSubjects[0].textContent.toUpperCase() === subjectLocal.textContent.toUpperCase())) {
+                subjectLocal = subjects[subjectLocal.textContent.toUpperCase()] > -1 ? subjects[subjectLocal.textContent.toUpperCase()] : `<a href="edit.html?id=${id}">adicionar nota</a>`;
+                studentGradesHTML += `<td class="td edit" subject='${subject}'>${subjectLocal}</td>`;
             }
         }
 

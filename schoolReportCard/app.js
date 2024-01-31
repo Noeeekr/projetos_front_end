@@ -1,10 +1,7 @@
 const studentsInfo = JSON.parse(localStorage.getItem("studentsData"));
-
-// delete this later; instead of being generated like this;
-const subjects = {"geografia": true,"fisica": true,"ingles": true,"frances": true,"portugues": true,"matematica": true};
+const subjects = {"geografia": 0,"fisica": 0,"ingles": 0,"frances": 0,"portugues": 0,"matematica": 0};
 
 // report section load :
-
 let studentView = new StudentView(document.querySelector("table.studentsReport"));
 let studentService = new StudentService(studentView);
     studentService.renderHeader(subjects);
@@ -13,8 +10,6 @@ let studentService = new StudentService(studentView);
 for (let id in studentService.students) {
     studentService.renderStudent(id);
 }
-
-// search mechanism :
 
 function searchStudent(event) {
     let searchInput = event.target || event;
@@ -29,9 +24,8 @@ function searchStudent(event) {
     })
 }
 let searchMechanism = document.querySelector(".reportSearch .searchStudent");
-    searchMechanism.addEventListener("input",(e) => {searchStudent(e)})
+    searchMechanism.addEventListener("input",(e) => {searchStudent(e)});
 
-// add student mechanism ;
 function addStudent(event) {
     event.preventDefault()
 
@@ -54,17 +48,16 @@ let addForm = document.querySelector(".addAlunoForm");
 //
 // ********* to do area
 // 
-// edit html : popup dizendo que a grade já foi atualizada
-// add subjects feature in edit page
-// feature: change subject points by clicking on it in edit page; 
+// edit html : popup para aparecer quando clicar em uma grade
+// popup feature : change grade points
+//  
 //
-// new feature: edit which subjects you want to show in header
-// since all the subjects that are shown are the one predefined the instructor
-// should have the flexibility to search for the ones that are not in the grade and
+// add a feature to edit which subjects you want to show in header
+// (since all the subjects that are shown are the one predefined the instructor)
+// it should have the flexibility to search for the ones that are not in the grade and
 // add them to it
 //
 // feature: remove student grade;
-// feature: change what subjects are shown in header;
-// feature: say how many results were found with that input value while searching
+// feature: say how many results were found in search student by name/id
 // make the buttons actually work in edit html/report
 // when you change a student's grade, it won't leave the table until you press "atualizar grade" button, or close browser

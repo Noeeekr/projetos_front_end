@@ -5,6 +5,7 @@ const studentService = new StudentService(editView);
     studentService.students = JSON.parse(localStorage.getItem("studentsData"));
     studentService.renderHeader(studentService.students[currentStudentID].subjects);
     studentService.renderStudent(currentStudentID);
+    enableGradeEdit();
 
 // disable forms;
 [...document.querySelectorAll("form")].forEach((form) => {form.addEventListener("submit",(e) => {e.preventDefault()});})
@@ -37,6 +38,8 @@ function addSubject() {
     studentService.clearBody();
     studentService.renderHeader(studentSubjects);
     studentService.renderStudent(currentStudentID);
+
+    enableGradeEdit()
 }
 let addSubjMechanism = document.querySelector(".form.addSubject");
     addSubjMechanism.addEventListener("submit",addSubject)
@@ -45,8 +48,22 @@ function updateStudent() {
     localStorage.setItem("studentsData",JSON.stringify(studentService.students));
     studentService.renderStudent(currentStudentID);
 }
+function enableGradeEdit() {
+    [...document.querySelectorAll(".tbody .td.edit")].forEach((studentGrade) => {
+        studentGrade.addEventListener("click",(e) => {startChangeGradeProcess(e)})
+    })
+}
+function startChangeGradeProcess(event) {
+    let gradeSubject = event.target.getAttribute("subject").toUpperCase();
+    let popup = document.querySelector(".changeGradePopupHolder");
+        popup.className += " active";
+    let subjectPoints = studentService.students[currentStudentID].subjects[gradeSubject];
+
+    console.log(subjectPoints)
+}
 // buttons ;
 
 document.querySelector(".buttonHolder.submit .addSubject").addEventListener("click",addSubject);
 document.querySelector(".buttonHolder.searchStudent .button").addEventListener("click",searchStudent);
-document.querySelector(".buttonHolder.submit .updateGrade").addEventListener("click",updateStudent)
+document.querySelector(".buttonHolder.submit .updateGrade").addEventListener("click",updateStudent);
+

@@ -68,7 +68,7 @@ input[type="text"]:focus {
 
     margin: 0px auto;
 }
-.header {
+.content .main.header {
     display: flex;
     align-items: center;
     justify-content: center;
@@ -83,7 +83,7 @@ input[type="text"]:focus {
 
     margin: 40px auto;
 }
-.header .title {
+.content .main.header .title {
     font-size: 3rem;
     font-family: Georgia;
     text-align: center;
