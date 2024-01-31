@@ -32,22 +32,18 @@ class StudentView {
         let headerSubjects = this.thead.querySelectorAll("tr .td");
         let {name,subjects,id} = studentInfo;
 
-        let studentGradesHTML = []; 
-            studentGradesHTML.push(`<td class="td">${name}</td>`)
+        let studentGradesHTML = ""; 
+            studentGradesHTML += `<td class="td">${name}</td>`;
         
         for (let subject of headerSubjects) {
+            // loads only the grades that are in header + compare them in uppercase for compatibility
             if (!(headerSubjects[0].textContent.toUpperCase() === subject.textContent.toUpperCase())) {
                 subject = subjects[subject.textContent.toUpperCase()] > -1 ? subjects[subject.textContent.toUpperCase()] : `<a href="edit.html?id=${id}">adicionar nota</a>`;
-                studentGradesHTML.push(`<td class="td">${subject}</td>`)
+                studentGradesHTML += `<td class="td">${subject}</td>`;
             }
         }
 
-        let studentContent = "";
-        studentGradesHTML.forEach((subject) => {
-            studentContent += subject;
-        })
-
-        let student = `<tr class="student">${studentContent}</tr>`;
+        let student = `<tr class="student">${studentGradesHTML}</tr>`;
         this.tbody.innerHTML += student;
     }
 }

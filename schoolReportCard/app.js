@@ -54,6 +54,7 @@ let addForm = document.querySelector(".addAlunoForm");
 //
 // ********* to do area
 // 
+// edit html : popup dizendo que a grade já foi atualizada
 // add subjects feature in edit page
 // feature: change subject points by clicking on it in edit page; 
 //
@@ -62,7 +63,8 @@ let addForm = document.querySelector(".addAlunoForm");
 // should have the flexibility to search for the ones that are not in the grade and
 // add them to it
 //
+// feature: remove student grade;
 // feature: change what subjects are shown in header;
 // feature: say how many results were found with that input value while searching
-// make the buttons work in edit html
+// make the buttons actually work in edit html/report
 // when you change a student's grade, it won't leave the table until you press "atualizar grade" button, or close browser
