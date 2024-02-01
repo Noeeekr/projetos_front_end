@@ -18,15 +18,23 @@
                 <label for="addAlunoForm_nameInput" class="title">Nome ou ID do Aluno</label>
                 
                 <div class="buttonHolder searchStudent">
-                    <input type="text" placeholder="Insira o nome ou ID do aluno" class="addStudent">
-                    <button value="searchStudent" type="button" class="button" >Procurar</button>
+                    <input type="text" id="addAlunoForm_nameInput" placeholder="Insira o nome ou ID do aluno" class="addStudent">
+                    <button value="searchStudent" type="submit" class="button" >Procurar</button>
                 </div>
 
                 <h5 class="title">Notas por matéria (clique na matéria para editar)</h5>
                 <div class="reportSection">
                     <div class="changeGradePopupHolder">
                         <div class="changeGradePopup">
+                            <form method="get" class="changeGradeForm"> 
+                                <h2 class="popupInfo">Trocar nota de <span class="studentName">Aluno</span> na matéria <span class="studentSubject">matéria</span>?</h2>
+                                <h5 class="extraInfo">(clique fora do popup para sair do modo de edição de notas)</h5>
+                                
+                                <label for="changeGradeInput" class="paragraph">Insira a nota desejada:</label>
+                                <input id="changeGradeInput" type="text" value="0.0" class="grade"/>
 
+                                <button type="submit" class="button">Mudar nota</button>
+                            </form>
                         </div>
                     </div>
                     <table class="studentsReport">
@@ -66,8 +74,8 @@
             </form> 
             <form method="get" class="form updateInfo">
                 <div class="buttonHolder submit">
-                    <button value="add" class="button addSubject">Adicionar Matéria</button>
-                    <button value="update" class="button updateGrade">Atualizar Grade</button>
+                    <button type="submit" value="add" class="button addSubject">Adicionar Matéria</button>
+                    <button type="submit" value="update" class="button updateGrade">Atualizar Grade</button>
                 </div>
             </form>
         </div>
