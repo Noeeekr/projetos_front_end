@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 .form.addAlunoForm .inputHolder {
     display: flex;
     justify-content: center;
@@ -20,7 +21,7 @@
     font-size: 40px;
     color: rgba(0,0,0,0.5);
 
-    transform: scale(1.0);
+    transform: scale(0.9);
     transition: transform 100ms linear, color 100ms linear, background-color 100ms linear;
 
     flex: 0 0 auto;
@@ -30,12 +31,12 @@
 .form.addAlunoForm .submit:hover {
     background-color: var(--complementaryDark);
 
-    transform: scale(1.1);
+    transform: scale(1.0);
 
     color: rgba(0,0,0,0.8);
 }
 
-.reportSearch {
+.reportSearch {    
     display: flex;
     flex-direction: column;
     
@@ -54,8 +55,4 @@
     color: rgb(0,0,0,0.4);
 
     margin: 20px 0px;
-}
-
-.studentsReport .tbody .student:nth-of-type(odd) .td {
-    background-color: rgb(0,0,0,0.1);
 }

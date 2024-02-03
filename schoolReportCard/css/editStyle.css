@@ -138,22 +138,6 @@ tbody td:hover::before {
     font-size: 1rem;
 }
 
-/*
-
-<div class="changeGradePopupHolder">
-    <div class="changeGradePopup">
-        <form method="get" class="changeGradeForm"> 
-            <h2 class="popupInfo">Trocar nota de <span class="studentName">Aluno</span> na matéria <span class="studentSubject">matéria</span>?</h2>
-            <h5 class="extraInfo">(clique fora do popup para sair do modo de edição de notas)</h5>
-            
-            <p class="paragraph">Insira a nota desejada:</p>
-            <input type="text" value="0.0"/>
-            <button class="button">Mudar nota</button>
-        </form>
-    </div>
-</div>
-
-*/
 @media screen and (max-width: 460px) {
     .changeGradePopupHolder .changeGradePopup {
         border-radius: 0px;

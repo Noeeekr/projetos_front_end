@@ -22,6 +22,8 @@ function searchStudent() {
 
     studentService.renderHeader(studentService.students[currentStudentID].subjects);
     studentService.renderStudent(currentStudentID);
+
+    enableGradeEdit()
 }
 
 function addSubject() {
@@ -102,6 +104,18 @@ function finishCGP(event) {
         popup.classList.remove("active");
 
     grade.value = 0;
+}
+
+function enableMouseScroll(event) {
+    event.preventDefault()
+    
+    let scrollSection = document.querySelector(".reportSection");
+
+    scrollSection.scroll({
+        top: 0,
+        left: ~event.wheelDelta,
+        behavior: "smooth",
+    });
 }
 // buttons ;
 

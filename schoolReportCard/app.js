@@ -1,5 +1,5 @@
 const studentsInfo = JSON.parse(localStorage.getItem("studentsData"));
-const subjects = {"geografia": 0,"fisica": 0,"ingles": 0,"frances": 0,"portugues": 0,"matematica": 0};
+const subjects = {"filosofia": 0,"sociologia": 0,"geografia": 0,"fisica": 0,"ingles": 0,"frances": 0,"portugues": 0,"matematica": 0};
 
 // report section load :
 let studentView = new StudentView(document.querySelector("table.studentsReport"));
@@ -10,6 +10,20 @@ let studentService = new StudentService(studentView);
 for (let id in studentService.students) {
     studentService.renderStudent(id);
 }
+
+function enableMouseScroll(event) {
+    event.preventDefault()
+    
+    let scrollSection = document.querySelector(".reportSection");
+
+    scrollSection.scroll({
+        top: 0,
+        left: ~event.wheelDelta,
+        behavior: "smooth",
+    });
+}
+let header = document.querySelector(".reportSection");
+    header.addEventListener("wheel",(e) => {enableMouseScroll(e)});
 
 function searchStudent(event) {
     let searchInput = event.target || event;
@@ -45,19 +59,19 @@ function addStudent(event) {
 let addForm = document.querySelector(".addAlunoForm");
     addForm.addEventListener("submit",(e) => {addStudent(e)});
 
+// commit: improvement in design changes + small bugs fixed;
 //
-// ********* to do area
-// 
-// edit html : popup para aparecer quando clicar em uma grade
-// popup feature : change grade points
-//  
+// ********* update possibilities:
 //
 // add a feature to edit which subjects you want to show in header
 // (since all the subjects that are shown are the one predefined the instructor)
 // it should have the flexibility to search for the ones that are not in the grade and
 // add them to it
 //
-// feature: remove student grade;
+// feature: remove student grade in report html;
 // feature: say how many results were found in search student by name/id
-// make the buttons actually work in edit html/report
-// when you change a student's grade, it won't leave the table until you press "atualizar grade" button, or close browser
+// feature: when you change a student's grade, it won't leave the table until you press "atualizar grade" button, or close browser
+// or it'll go to a new table to show the changes.
+//
+// new way to add multiple students, use a property to store an string with all
+// students, so they can be loaded at once
