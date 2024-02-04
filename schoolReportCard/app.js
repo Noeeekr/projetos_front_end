@@ -1,6 +1,6 @@
-import StudentModel from "./MModels/studentModel.js";
-import StudentService from "./MServices/studentService.js";
-import StudentView from "./MViews/studentView.js";
+import StudentModel from "./models/studentModel.js";
+import StudentService from "./services/studentService.js";
+import StudentView from "./views/studentView.js";
 
 const studentsInfo = JSON.parse(localStorage.getItem("studentsData"));
 const subjects = {"filosofia": 0,"sociologia": 0,"geografia": 0,"fisica": 0,"ingles": 0,"frances": 0,"portugues": 0,"matematica": 0};

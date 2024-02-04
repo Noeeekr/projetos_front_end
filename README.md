@@ -12,7 +12,7 @@ My current blog.
 
 | Name                                                                              | Short Description                                          | Tier       |
 | --------------------------------------------------------------------------------- | ---------------------------------------------------------- | ---------- |
-| [MyBlog](./Blog)                                                                  | My personal blog                                           | 0-Beginner |
+| [MyBlog](./blog)                                                                  | My personal blog                                           | 0-Beginner |
 
 Challenges that I made.
 

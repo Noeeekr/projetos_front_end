@@ -1,6 +1,6 @@
-import StudentService from "./MServices/studentService.js";
-import StudentView from './MViews/studentView.js';
-console.log("abc")
+import StudentService from "./services/studentService.js";
+import StudentView from './views/studentView.js';
+
 const editView = new StudentView(document.querySelector(".infoSection .studentsReport"));
 let currentStudentID = new URLSearchParams(window.location.search).get("id") || 1;
 
