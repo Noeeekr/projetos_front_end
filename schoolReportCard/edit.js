@@ -7,8 +7,18 @@ const studentService = new StudentService(editView);
     studentService.renderStudent(currentStudentID);
     enableGradeEdit();
 
+;(function(){
+// buttons ;
+    document.querySelector(".buttonHolder.submit .addSubject").addEventListener("click",addSubject);
+    document.querySelector(".buttonHolder.searchStudent .button").addEventListener("click",searchStudent);
+    document.querySelector(".buttonHolder.submit .updateGrade").addEventListener("click",(e) => {updateStudent(e)});
+    document.querySelector(".changeGradePopupHolder").addEventListener("click",(e) => {interruptCGP(e)});    
+    document.querySelector(".changeGradePopupHolder .button").addEventListener("click",(e) => {finishCGP(e)});
+// mouse scroll;
+    document.querySelector(".reportSection").addEventListener("wheel",(e) => {enableMouseScroll(e)});
 // disable forms;
-[...document.querySelectorAll("form")].forEach((form) => {form.addEventListener("submit",(e) => {e.preventDefault()});})
+    [...document.querySelectorAll("form")].forEach((form) => {form.addEventListener("submit",(e) => {e.preventDefault()});})
+})();
 
 function searchStudent() { 
     let studentName = document.querySelector(".addAlunoForm .searchStudent .addStudent").value;
@@ -44,7 +54,7 @@ function addSubject() {
     enableGradeEdit()
 }
 let addSubjMechanism = document.querySelector(".form.addSubject");
-    addSubjMechanism.addEventListener("submit",addSubject)
+    addSubjMechanism.addEventListener("submit",addSubject);
 
 function updateStudent() {
     localStorage.setItem("studentsData",JSON.stringify(studentService.students));
@@ -54,15 +64,13 @@ function updateStudent() {
     studentService.clearBody();
     studentService.renderHeader(studentSubjects)
     studentService.renderStudent(currentStudentID);
-
-    enableGradeEdit()
+    
+    enableGradeEdit();
 }
 function enableGradeEdit() {
     [...document.querySelectorAll(".tbody .td.edit")].forEach((studentGrade) => {
         studentGrade.addEventListener("click",(e) => {startCGP(e)})
     });
-    document.querySelector(".changeGradePopupHolder").addEventListener("click",(e) => {interruptCGP(e)});
-    document.querySelector(".changeGradePopupHolder .button").addEventListener("click",(e) => {finishCGP(e)})
 }
 // CGP = ChangeGradeProcess
 function startCGP(event) {
@@ -71,7 +79,7 @@ function startCGP(event) {
     let popup = document.querySelector(".changeGradePopupHolder");
         popup.className += " active";
 
-    popup.querySelector(".popupInfo .studentName").textContent = studentService.students[currentStudentID].name
+    popup.querySelector(".popupInfo .studentName").textContent = studentService.students[currentStudentID].name;
     popup.querySelector(".popupInfo .studentSubject").textContent = subject;
     popup.querySelector(".grade").value = studentService.students[currentStudentID].subjects[subject];
 }
@@ -82,11 +90,6 @@ function interruptCGP(event) {
 
     let grade = event.target.parentElement.querySelector("input");
         grade.value = 0;
-
-    studentService.clearBody();
-    studentService.renderStudent(currentStudentID);
-    
-    enableGradeEdit();
 }
 function finishCGP(event) {
     let subject = event.target.parentElement.querySelector(".popupInfo .studentSubject").textContent.toUpperCase();
@@ -94,7 +97,7 @@ function finishCGP(event) {
     let gradeValue = parseFloat(grade.value);
 
     if (gradeValue > 100 || gradeValue < 0) {
-        grade.style = "border-bottom: red 2px solid"
+        grade.style = "border-bottom: red 2px solid";
         return;
     }
 
@@ -117,8 +120,3 @@ function enableMouseScroll(event) {
         behavior: "smooth",
     });
 }
-// buttons ;
-
-document.querySelector(".buttonHolder.submit .addSubject").addEventListener("click",addSubject);
-document.querySelector(".buttonHolder.searchStudent .button").addEventListener("click",searchStudent);
-document.querySelector(".buttonHolder.submit .updateGrade").addEventListener("click",updateStudent);
