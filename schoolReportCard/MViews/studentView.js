@@ -1,11 +1,3 @@
-// *IMPORTANT* if a student grade doesn't exist in header it wont be loaded;
-// *IMPORTANT* only grades that are relevant to the course will be loaded;
-// *IMPORTANT* do something about it andy, don't leave it like that;
-
-
-// please watch the two view videos again and redo this later using .map();
-// or something, make it efficient.
-
 class StudentView {
     constructor(renderLocal) {
         this.table = renderLocal;
@@ -48,3 +40,5 @@ class StudentView {
         this.tbody.innerHTML += student;
     }
 }
+
+export default StudentView

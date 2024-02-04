@@ -25,3 +25,5 @@ class StudentService {
         delete this.students[id]
     }
 }
+
+export default StudentService

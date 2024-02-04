@@ -19,3 +19,5 @@ class StudentModel {
         return biggestId;
     }
 }
+
+export default StudentModel

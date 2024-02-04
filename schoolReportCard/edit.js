@@ -1,3 +1,6 @@
+import StudentService from "./MServices/studentService.js";
+import StudentView from './MViews/studentView.js';
+console.log("abc")
 const editView = new StudentView(document.querySelector(".infoSection .studentsReport"));
 let currentStudentID = new URLSearchParams(window.location.search).get("id") || 1;
 
@@ -116,7 +119,7 @@ function enableMouseScroll(event) {
 
     scrollSection.scroll({
         top: 0,
-        left: ~event.wheelDelta,
+        left: ~event.wheelDelta * 2,
         behavior: "smooth",
     });
 }
