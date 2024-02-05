@@ -103,6 +103,8 @@ function finishCGP(event) {
         grade.style = "border-bottom: red 2px solid";
         return;
     }
+    // to make sure if two edits happen in two different pages they'll get the updated version;
+    studentService.students = JSON.parse(localStorage.getItem("studentsData"));
 
     studentService.students[currentStudentID].subjects[subject] = gradeValue;
     

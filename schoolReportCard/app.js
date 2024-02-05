@@ -1,16 +1,21 @@
-import StudentModel from "./models/studentModel.js";
-import StudentService from "./services/studentService.js";
-import StudentView from "./views/studentView.js";
-
 const studentsInfo = JSON.parse(localStorage.getItem("studentsData"));
 const subjects = {"filosofia": 0,"sociologia": 0,"geografia": 0,"fisica": 0,"ingles": 0,"frances": 0,"portugues": 0,"matematica": 0};
+
+import StudentService from "./services/studentService.js";
+import StudentView from "./views/studentView.js";
 
 // report section load :
 let studentView = new StudentView(document.querySelector("table.studentsReport"));
 let studentService = new StudentService(studentView);
     studentService.renderHeader(subjects);
     studentService.students = studentsInfo || {}; 
-    
+
+    export default studentService;
+
+import StudentModel from "./models/studentModel.js";
+
+// buttons ;
+document.querySelector(".addAlunoForm .inputHolder .submit").addEventListener("click",() => {addStudent([document.querySelector(".addAlunoForm .inputHolder .addStudent")])})
 for (let id in studentService.students) {
     studentService.renderStudent(id);
 }
@@ -30,7 +35,7 @@ let header = document.querySelector(".reportSection");
     header.addEventListener("wheel",(e) => {enableMouseScroll(e)});
 
 function searchStudent(event) {
-    let searchInput = event.target || event;
+    let searchInput = event.target;
     if (searchInput.value.length < 3 && searchInput.value !== "") return;
 
     [...document.querySelectorAll(".studentsReport .tbody .student")].forEach((student) => {
@@ -45,9 +50,7 @@ let searchMechanism = document.querySelector(".reportSearch .searchStudent");
     searchMechanism.addEventListener("input",(e) => {searchStudent(e)});
 
 function addStudent(event) {
-    event.preventDefault()
-
-    let nameInput = event.target.querySelector(".addStudent");
+    let nameInput =  event.target ? event.target.querySelector(".addStudent"): event;
     if (nameInput.value.length < 3) return; // should make it show a message if possible;
 
     let student = new StudentModel({

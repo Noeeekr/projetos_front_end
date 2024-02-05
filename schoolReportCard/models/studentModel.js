@@ -1,3 +1,5 @@
+import studentService from "../app.js";
+
 let biggestId = 0;
 
 class StudentModel {
