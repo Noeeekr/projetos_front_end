@@ -2,25 +2,24 @@ class AppView {
     constructor(view) {
         this.viewLocal = view;
     }
-
-    renderTaskOnTaskViewer({name,priority,description},parentThis) {
+    renderTaskOnTaskViewer({title,completed,userId},parentThis) {
         let task = document.createElement("div");
             task.className = "task";
             task.setAttribute("task","true");
     
-        let title = document.createElement("div");
-            title.className = "task-titleWrapper";
+        let header = document.createElement("div");
+            header.className = "task-titleWrapper";
     
         let taskName = document.createElement("h3");
-            taskName.textContent = name;
+            taskName.textContent = title;
             taskName.className = "task-title";
     
         let taskPriority = document.createElement("h4");
-            taskPriority.textContent = priority;
+            taskPriority.textContent = userId;
             taskPriority.className = "task-priority";
     
         let taskDescription = document.createElement("p");
-            taskDescription.innerText = description;
+            taskDescription.innerText = completed;
             taskDescription.className = "task-description";
     
         let iconWrapper = document.createElement("div");
@@ -34,9 +33,9 @@ class AppView {
                 closeButton.textContent = "done";
                 closeButton.addEventListener("click",(e) => {parentThis.closeButtonAction(e,parentThis)})
         iconWrapper.append(editButton,closeButton);
-        title.append(iconWrapper,taskName);
+        header.append(iconWrapper,taskName);
     
-        task.append(title,taskPriority,taskDescription);
+        task.append(header,taskPriority,taskDescription);
         
         this.viewLocal.appendChild(task);
     }
@@ -48,7 +47,7 @@ class AppView {
         }
 
         parentThis.taskHolder.splice([...document.querySelectorAll(".task")].indexOf(task),1);
-        parentThis.uploadTaskHolder();
+        parentThis.uploadTaskHolder("POST","https://jsonplaceholder.typicode.com/todos/1/todos",null,AppService.taskHolder);
     
         task.remove();
     }
@@ -71,7 +70,7 @@ class AppView {
             task.querySelector(".task-description").textContent = task.querySelector(".descriptionInput").value;
             task.querySelector(".task-priority").textContent = task.querySelector(".priorityInput").value;
             
-            parentThis.uploadTaskHolder();
+            parentThis.uploadTaskHolder("GET","https://jsonplaceholder.typicode.com/todos/1/todos",null,JSON.stringify(this.taskHolder));
             
             task.querySelector(".task-editContainer").remove()
             task.querySelector(".task .taskIcon:nth-child(1)").classList.remove("taskIconActive");

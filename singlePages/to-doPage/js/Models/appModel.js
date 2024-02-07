@@ -1,8 +1,8 @@
 class AppModel {
-    constructor([name,description,priority]) {
-        this.name = name;
-        this.description = description;
-        this.priority = priority;
+    constructor([title,userId,completed]) {
+        this.title = title;
+        this.userId = userId;
+        this.completed = completed;
         this.createdAt = Date.now();
         this.updated = null;
     }

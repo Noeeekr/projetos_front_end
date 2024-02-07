@@ -1,3 +1,5 @@
+import { createXHR } from "../../xmlHttpsRequest.js";
+
 class AppService {
     constructor(taskView) {
         this.taskHolder = [];
@@ -12,8 +14,8 @@ class AppService {
     editButtonAction(e) {
         this.taskView.editButtonAction(e,this)
     }
-    updateLocalTaskHolder() {
-        this.taskHolder = this.getTaskData() === null ? []: this.getTaskData();
+    updateLocalTaskHolder(method,url,cb,data) {
+        createXHR(method,url,cb,data);
     }
     uploadTaskHolder() {
         let data = JSON.stringify(this.taskHolder);

@@ -4,7 +4,7 @@ import { AppView } from "./Views/appView.js";
 
 let appView = new AppView(document.querySelector(".taskViewer .taskHolder"));
 let appService = new AppService(appView);
-    appService.updateLocalTaskHolder();
+    appService.updateLocalTaskHolder("GET","https://jsonplaceholder.typicode.com/todos",init);
 
 (function(){
     document.querySelectorAll(".introduction-createButton")[0].addEventListener("click",function(){
@@ -13,10 +13,10 @@ let appService = new AppService(appView);
     });
     document.getElementById("taskForm-createButton").addEventListener("click",() => {checkTaskFormValues(getFormValues())});
     document.getElementById("warningPopUp-closeButton").addEventListener("click",() => {this.classList.remove("active");});
-    
-    appService.taskHolder.forEach((task) => {appService.renderTaskOnTaskViewer(task);})
 })();
-
+function init(tasks) {
+    tasks.forEach((task) => {appService.taskHolder.push(task);appService.renderTaskOnTaskViewer(task)})
+}
 function getFormValues(){
     return [...document.getElementsByName("taskForm-value")].map((node) => {return node.value})
 }
