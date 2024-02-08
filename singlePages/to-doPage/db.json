@@ -1,0 +1,46 @@
+{
+  "tasks": [
+    {
+      "title": "first task",
+      "completed": false,
+      "createdAt": "",
+      "updatedAt": "",
+      "userId": 1,
+      "id": "2b94"
+    },
+    {
+      "title": "second task",
+      "completed": false,
+      "createdAt": "",
+      "updatedAt": "",
+      "userId": 3,
+      "id": "d65a"
+    },
+    {
+      "title": "third task",
+      "completed": false,
+      "createdAt": "",
+      "updatedAt": "",
+      "userId": 3,
+      "id": "ab9b"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "email": "andy@server.com"
+    },
+    {
+      "id": "2",
+      "email": "nolan@server.com"
+    },
+    {
+      "id": "3",
+      "email": "pablo@server.com"
+    },
+    {
+      "id": "4",
+      "email": "carmen@server.com"
+    }
+  ]
+}

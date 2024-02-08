@@ -47,7 +47,7 @@ class AppView {
         }
 
         parentThis.taskHolder.splice([...document.querySelectorAll(".task")].indexOf(task),1);
-        parentThis.uploadTaskHolder("POST","https://jsonplaceholder.typicode.com/todos/1/todos",null,AppService.taskHolder);
+        parentThis.uploadTaskHolder("POST","http://localhost:3000/tasks",null,AppService.taskHolder);
     
         task.remove();
     }
@@ -70,7 +70,7 @@ class AppView {
             task.querySelector(".task-description").textContent = task.querySelector(".descriptionInput").value;
             task.querySelector(".task-priority").textContent = task.querySelector(".priorityInput").value;
             
-            parentThis.uploadTaskHolder("GET","https://jsonplaceholder.typicode.com/todos/1/todos",null,JSON.stringify(this.taskHolder));
+            parentThis.uploadTaskHolder("POST","http://localhost:3000/tasks",null,JSON.stringify(this.taskHolder));
             
             task.querySelector(".task-editContainer").remove()
             task.querySelector(".task .taskIcon:nth-child(1)").classList.remove("taskIconActive");
