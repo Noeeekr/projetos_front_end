@@ -6,13 +6,15 @@ let appView = new AppView(document.querySelector(".taskViewer .taskHolder"));
 let appService = new AppService(appView);
     appService.updateLocalTaskHolder("GET","http://localhost:3000/tasks",init);
 
+export {appService};
+
 (function(){
     document.querySelectorAll(".introduction-createButton")[0].addEventListener("click",function(){
         if (document.querySelectorAll(".taskFormWrapper")[0].classList[1]) { document.querySelectorAll(".taskFormWrapper")[0].classList.remove("taskFormWrapperActive");}
         else {document.querySelectorAll(".taskFormWrapper")[0].classList.add("taskFormWrapperActive");}
     });
     document.getElementById("taskForm-createButton").addEventListener("click",() => {checkTaskFormValues(getFormValues())});
-    document.getElementById("warningPopUp-closeButton").addEventListener("click",() => {this.classList.remove("active");});
+    document.getElementById("warningPopUp-closeButton").addEventListener("click",function(){this.classList.remove("active");});
 })();
 function init(tasks) {
     if (!tasks) return;
@@ -30,6 +32,7 @@ function checkTaskFormValues(inputArray){
     }
 
     appService.taskHolder.push(new AppModel(inputArray)) && appService.uploadTaskHolder();
+    appService.updateLocalTaskHolder("POST","http://localhost:3000/tasks",null,JSON.stringify(appService.taskHolder[appService.taskHolder.length - 1]))
     appService.renderTaskOnTaskViewer(appService.taskHolder[appService.taskHolder.length - 1]);
 
     document.getElementsByName("taskForm-value").forEach((node) => {if (node) {node.value = "";}});

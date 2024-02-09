@@ -1,8 +1,10 @@
 function createXHR(method,url,cb,data = null) {
+	console.log("foi")
     let xhr = new XMLHttpRequest();
-		xhr.onreadystatechange = stateCheck;
-		xhr.open(method,url,true);
-		xhr.send(data)
+	xhr.onreadystatechange = stateCheck;
+	xhr.open(method,url,true);
+	xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8")
+	xhr.send(data)
 
 	function stateCheck() {
 		if (xhr.state === 404) {
@@ -10,8 +12,9 @@ function createXHR(method,url,cb,data = null) {
 			return;
 		}
 		if (this.readyState === 4 && this.status === 200) {
-			cb(JSON.parse(xhr.responseText));	
+			if (typeof cb === "function") cb(JSON.parse(xhr.responseText));	
 		}
+		console.log(this.readyState,this.status)
 	}
 }
 export { createXHR };

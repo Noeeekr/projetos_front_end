@@ -39,38 +39,44 @@ class AppView {
         
         this.viewLocal.appendChild(task);
     }
-
+    //
+    // I KNOW THIS CODE SUCKS
+    // BUT I'M NOT REMAKING IT
+    // I'LL DO A BETTER ONE 
+    // I PROMISE
+    // I JUST WANTED TO TEST AJAX ON IT
+    // I'M SORRY MOM AND DAD
+    //
     closeButtonAction(e,parentThis){
         let task = e.target;
+        let taskArray = [...document.querySelectorAll(".task")]
         while (task.classList[0] !== "task") {
             task = task.parentElement;
         }
 
-        parentThis.taskHolder.splice([...document.querySelectorAll(".task")].indexOf(task),1);
-        parentThis.uploadTaskHolder("POST","http://localhost:3000/tasks",null,AppService.taskHolder);
+        parentThis.updateLocalTaskHolder("DELETE",`http://localhost:3000/tasks/${taskArray.indexOf(task)}`,null,null);
     
         task.remove();
     }
 
     editButtonAction(e,parentThis){
         let editButton = e.target;
+        let taskArray = [...document.querySelectorAll(".task")]
         let task = e.target;
         while (!task.getAttribute("task")) {
             task = task.parentElement;
         }
-    
-        if (editButton.className.includes("taskIconActive")) {
-            let taskArray = [...document.querySelectorAll(".task")]
-            
-            parentThis.taskHolder[taskArray.indexOf(task)].name = task.querySelector("input.nameInput").value;
-            parentThis.taskHolder[taskArray.indexOf(task)].description = task.querySelector(".descriptionInput").value;
-            parentThis.taskHolder[taskArray.indexOf(task)].priority = task.querySelector(".priorityInput").value;
 
+        if (editButton.className.includes("taskIconActive")) {            
+            parentThis.taskHolder[taskArray.indexOf(task)].title = task.querySelector("input.nameInput").value;
+            parentThis.taskHolder[taskArray.indexOf(task)].userId = task.querySelector(".descriptionInput").value;
+            parentThis.taskHolder[taskArray.indexOf(task)].completed = task.querySelector(".priorityInput").value;
+            
             task.querySelector(".task-title").textContent = task.querySelector("input.nameInput").value;
             task.querySelector(".task-description").textContent = task.querySelector(".descriptionInput").value;
             task.querySelector(".task-priority").textContent = task.querySelector(".priorityInput").value;
             
-            parentThis.uploadTaskHolder("POST","http://localhost:3000/tasks",null,JSON.stringify(this.taskHolder));
+            parentThis.updateLocalTaskHolder("PUT",`http://localhost:3000/tasks/${taskArray.indexOf(task)}`,null,JSON.stringify(parentThis.taskHolder[taskArray.indexOf(task)]));
             
             task.querySelector(".task-editContainer").remove()
             task.querySelector(".task .taskIcon:nth-child(1)").classList.remove("taskIconActive");
