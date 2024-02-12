@@ -32,6 +32,7 @@ function checkTaskFormValues(inputArray){
     }
 
     appService.taskHolder.push(new AppModel(inputArray)) && appService.uploadTaskHolder();
+    appService.updateLocalTaskHolder("GET","http://localhost:3000/tasks",init,null)
     appService.updateLocalTaskHolder("POST","http://localhost:3000/tasks",null,JSON.stringify(appService.taskHolder[appService.taskHolder.length - 1]))
     appService.renderTaskOnTaskViewer(appService.taskHolder[appService.taskHolder.length - 1]);
 

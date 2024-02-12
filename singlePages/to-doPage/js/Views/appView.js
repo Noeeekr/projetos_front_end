@@ -55,7 +55,8 @@ class AppView {
         }
 
         parentThis.updateLocalTaskHolder("DELETE",`http://localhost:3000/tasks/${taskArray.indexOf(task)}`,null,null);
-    
+        parentThis.taskArray.splice(taskArray.indexOf(task),1);
+        
         task.remove();
     }
 

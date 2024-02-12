@@ -17,10 +17,6 @@ class AppService {
     updateLocalTaskHolder(method,url,cb,data) {
         createXHR(method,url,cb,data);
     }
-    uploadTaskHolder() {
-        let data = JSON.stringify(this.taskHolder);
-        localStorage.setItem("taskHolderData",data);
-    }
     getTaskData() {
         let data = localStorage.getItem("taskHolderData");
         return JSON.parse(data);
