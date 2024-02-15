@@ -1,0 +1,27 @@
+@charset "UTF-8";
+
+body {
+    background-color: rgb(240,210,240);
+
+    margin: 20px;
+}
+
+.content {
+    display: grid;
+    grid-template-columns: 70px auto;
+    
+    width: 100%;
+        max-width: 1500px;
+    height: auto;
+    border-radius: 1rem;
+    box-shadow: rgba(0,0,0,0.3) 0px 0px 12px 3px;
+    overflow: hidden;
+}
+.content > .header {
+    background-color: rgb(90,0,90);
+}
+.content > .main {
+    background-color: rgb(255,255,255);
+    box-sizing: border-box;
+        padding: 20px;
+}
