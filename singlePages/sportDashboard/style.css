@@ -1,4 +1,5 @@
 @charset "UTF-8";
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
 body {
     background-color: rgb(240,210,240);
@@ -8,7 +9,7 @@ body {
 
 .content {
     display: grid;
-    grid-template-columns: 70px auto;
+    grid-template-columns: 60px auto;
     
     width: 100%;
         max-width: 1500px;
@@ -18,10 +19,185 @@ body {
     overflow: hidden;
 }
 .content > .header {
-    background-color: rgb(90,0,90);
+       background-color: rgb(64,45,155);
+
+       padding-bottom: 20px;
+}
+.content > .header .mainIcon {
+       position: relative;
+       right: 0px;
+
+       background-color: white;
+       width: 25px;
+       height: 25px;
+       border-radius: 45%;
+
+       transform: scale(1.3);
+
+       margin: 20px 25% 20px auto;
+}
+.content > .header .itemHolder {
+       display: flex;
+       flex-direction: column;
+       gap: 10px;
+       
+       width: 100%;
+       height: 100%;
+       padding: 0px;
+       
+       margin: 0px;
+}       
+.content > .header .itemHolder .iconHolder {
+	position: relative;
+
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
+	width: 50px;
+	height: 45px;
+	border-radius: 18px 0px 0px 18px;
+	
+	margin: 0px 0px 0px auto;	
+}
+.content > .header .itemHolder .iconHolder:hover {
+	background-color: white;
+}
+.content > .header .itemHolder .iconHolder .decoration {
+	display: none;
+
+	position: absolute;
+	right: 0;
+
+	background-color: none;
+	width: 100%;
+	height: 15px;
+}
+.content > .header .itemHolder .iconHolder:hover .decoration {
+	display: inline;
+
+	background-color: white;
+}
+.content > .header .itemHolder .iconHolder .decoration:nth-of-type(1) {
+	top: 100%;
+}
+.content > .header .itemHolder .iconHolder .decoration:nth-of-type(2) {
+	bottom: 100%;
+} 
+.content > .header .itemHolder .iconHolder .decoration::before {
+	position: absolute;
+	top: 0;
+	left: 0;
+	
+	content: "";
+
+       	background-color: rgb(64,45,155);
+	width: 100%;
+	height: 100%;
+}
+.content > .header .itemHolder .iconHolder .decoration:nth-of-type(1)::before {
+	border-top-right-radius: 15px;
+}
+.content > .header .itemHolder .iconHolder .decoration:nth-of-type(2)::before {
+	border-bottom-right-radius: 15px;
+}
+.content > .header .itemHolder .iconHolder .icon {
+	background-color: white;
+	width: 25px;
+	height: 25px;
+	border-radius: 100%;
+	
+	margin: 0 auto;
+}
+.content > .header .itemHolder .iconHolder:hover .icon {
+	background-color: rgb(64,45,155);
 }
 .content > .main {
-    background-color: rgb(255,255,255);
-    box-sizing: border-box;
-        padding: 20px;
+	display: grid;
+	grid-template-columns: 50% 50%;
+	gap: 10px;
+
+	background-color: rgba(255,255,255,1);
+	width: 100%;
+	height: auto;
+
+	box-sizing: border-box;
+	padding: 10px;
 }
+.content > .main .section {
+	background-color: rgba(0,0,0,0.02);
+	width: 100%;
+	height: 100%;
+	border-radius: 15px;
+}
+.content > .main .section.A .activities {
+	display: flex;
+	flex-direction: column;
+
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+	   padding: 20px;
+}
+.section.A .title {
+	font-size: 22px;
+	font-family: "Montserrat", sans-serif;
+
+	margin: 0px 0px 20px 0px;
+}
+.section.A .itemHolder {
+	display: grid;
+	
+	background-color: rgba(200,200,200,0.3);
+	padding: 0px;
+
+	margin: 0px;	
+}
+.section.A .activities .itemHolder {
+	grid-template-rows: 140px 140px;
+	grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
+	grid-gap: 10px;
+}
+.section.A .activities .itemHolder .info {
+	position: relative;
+
+	background-color: rgb(0,0,0,0.1);	
+	border-radius: 15px;
+
+	overflow: hidden;
+}
+.section.A .activities .itemHolder .info .infoText {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-end;
+
+	background-image: linear-gradient(0deg,purple,transparent 100%);
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+	    padding: 10px;
+	    	
+	font-family: "Montserrat", sans-serif;
+	font-size: 14px;
+	font-weight: 700;
+	color: white;
+
+	opacity: 0;
+
+	transition: opacity 200ms linear;
+
+	margin: 0px;
+}
+.section.A .activities .itemHolder .info .infoText:hover {
+	opacity: 1;
+}
+/*
+
+ 
+
+*/
+
