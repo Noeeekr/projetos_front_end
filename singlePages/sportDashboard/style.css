@@ -9,7 +9,7 @@ body {
 
 .content {
     display: grid;
-    grid-template-columns: 60px auto;
+    grid-template-columns: 10% 90%;
     
     width: 100%;
         max-width: 1500px;
@@ -20,7 +20,7 @@ body {
 }
 .content > .header {
        background-color: rgb(64,45,155);
-
+	   
        padding-bottom: 20px;
 }
 .content > .header .mainIcon {
@@ -54,10 +54,12 @@ body {
 	align-items: center;
 	justify-content: center;
 
-	width: 50px;
+	width: min(90%,60px);
 	height: 45px;
 	border-radius: 18px 0px 0px 18px;
 	
+	flex: 0 0 basis;
+
 	margin: 0px 0px 0px auto;	
 }
 .content > .header .itemHolder .iconHolder:hover {
@@ -91,7 +93,7 @@ body {
 	
 	content: "";
 
-       	background-color: rgb(64,45,155);
+    background-color: rgb(64,45,155);
 	width: 100%;
 	height: 100%;
 }
@@ -125,40 +127,44 @@ body {
 	padding: 10px;
 }
 .content > .main .section {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+
 	background-color: rgba(0,0,0,0.02);
 	width: 100%;
 	height: 100%;
 	border-radius: 15px;
+	box-sizing: border-box;
+		padding: 20px;
 }
-.content > .main .section.A .activities {
+.content .main .section .activities {
 	display: flex;
 	flex-direction: column;
 
 	width: 100%;
 	height: auto;
-	box-sizing: border-box;
-	   padding: 20px;
 }
-.section.A .title {
+.section .title {
 	font-size: 22px;
 	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
 
 	margin: 0px 0px 20px 0px;
 }
-.section.A .itemHolder {
+.section .itemHolder {
 	display: grid;
 	
-	background-color: rgba(200,200,200,0.3);
 	padding: 0px;
 
 	margin: 0px;	
 }
-.section.A .activities .itemHolder {
+.section > .activities .itemHolder {
 	grid-template-rows: 140px 140px;
 	grid-template-columns: repeat(auto-fit, minmax(100px,1fr));
 	grid-gap: 10px;
 }
-.section.A .activities .itemHolder .info {
+.section > .activities .itemHolder .info {
 	position: relative;
 
 	background-color: rgb(0,0,0,0.1);	
@@ -166,7 +172,7 @@ body {
 
 	overflow: hidden;
 }
-.section.A .activities .itemHolder .info .infoText {
+.section > .activities .itemHolder .info .infoText {
 	position: absolute;
 	bottom: 0;
 	right: 0;
@@ -175,7 +181,7 @@ body {
 	align-items: flex-end;
 	justify-content: flex-end;
 
-	background-image: linear-gradient(0deg,purple,transparent 100%);
+	background-image: linear-gradient(0deg,rgba(150,0,150,0.55) 10%,transparent,transparent);
 	width: 100%;
 	height: 100%;
 	box-sizing: border-box;
@@ -186,18 +192,123 @@ body {
 	font-weight: 700;
 	color: white;
 
-	opacity: 0;
+	opacity: 1;
 
 	transition: opacity 200ms linear;
 
 	margin: 0px;
 }
-.section.A .activities .itemHolder .info .infoText:hover {
-	opacity: 1;
+.section > .activities .itemHolder .info .infoText:hover {
+	opacity: 0;
+}
+.section > .schedule {
+	width: 100%;
+}
+.section > .schedule .itemHolder {
+	display: grid;
+	grid-template-rows: auto auto auto auto;
+	gap: 10px;
+}
+.section > .schedule .itemHolder .info {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+
+	background-image: linear-gradient(0deg,rgba(100,200,0,0.1),rgba(0,0,0,0.1));
+	box-sizing: border-box;
+	padding: 15px 10px;
+	
+	border-radius: 20px;
+}
+.section > .schedule .itemHolder .info:nth-of-type(1){background-image: linear-gradient(90deg,rgb(210,250,250),rgb(140,140,250));}
+.section > .schedule .itemHolder .info:nth-of-type(2){background-image: linear-gradient(90deg,rgb(210,250,250),rgb(170,170,10));}
+.section > .schedule .itemHolder .info:nth-of-type(3){background-image: linear-gradient(90deg,rgb(210,250,250),rgb(150,200,250));}
+.section > .schedule .itemHolder .info:nth-of-type(4){background-image: linear-gradient(90deg,rgb(210,250,250),rgb(200,150,150));}
+.section > .schedule .info .date {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+
+	width: 40px;
+	height: 100%;
+	padding-right: 7px;
+	border-right: solid 3px grey;
+
+	font-family: "Montserrat", sans-serif;
+	font-weight: 600;
+	font-size: 22px;
+	text-align: center;
+
+	margin: 0px;
+}
+.section > .schedule .info .date span {
+	font-weight: 500;
+	font-size: 16px;
+	letter-spacing: -2px;
+}
+.section > .schedule .info .sport {
+	display: flex;
+	flex-direction: column;
+	gap: 2px;
+
+	height: 100%;
+	
+	margin: 0px 10px;
+}
+.section > .schedule .info .sport .title {
+	margin: 0px;
+}
+.section > .schedule .info .sport .friendList {
+	display: flex;
+	flex-direction: row;
+
+	padding: 0px 0px 0px 15px;
+}
+.section > .schedule .info .sport .friendList .friend {
+	position: relative;
+
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+
+	margin: 0px 0px 0px -15px;
+}
+.friend:nth-of-type(1) {background-color: rgb(250,100,10);}
+.friend:nth-of-type(2) {background-color: rgb(20,40,140);}
+.friend:nth-of-type(3) {background-color: rgb(100,60,190);}
+.friend:nth-of-type(4) {background-color: rgb(50,200,50);}
+.section > .schedule .info .button {
+	background-color: rgba(255,255,255,0.9);
+	padding: 6px 17px;
+	border: none;
+	border-radius: 18px;
+	margin: 0px 0px 0px auto;
+
+	transform: scale(1.0);
+
+	transition: transform 200ms linear, background-color 200ms linear;
+}
+.section > .schedule .info .button:hover {
+	background-color: rgba(240,240,240,0.7);
+
+	transform: scale(1.1);
 }
 /*
-
- 
-
+<li class="info">
+    <p class="date">
+        13
+        <span>MON</span>
+    </p>
+    <div class="sport">    
+        <h6 class="title">Swimming</h6>
+        <ul type="none" class="friendList">
+            <li class="friend"></li>
+            <li class="friend"></li>
+            <li class="friend"></li>
+        </ul>
+    </div>
+    <button class="button">Join</button>
+</li>
 */
 
