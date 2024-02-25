@@ -8,6 +8,37 @@
     justify-content: space-between;
 }
 
+.config {
+  display: flex;
+  justify-content: center;
+  gap: 20px;  
+}
+.config .btnRequestType {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background-color: rgb(255,255,255);
+  width: auto;
+  height: 30px;
+  padding: 10px;
+  border: solid 2px rgb(20,20,20);
+  border-radius: 20px;
+
+  transform: scale(1.0);
+  transition: background-color 200ms linear, border 200ms linear, transform 200ms linear;
+
+  cursor: pointer;
+}
+.config .btnRequestType:hover,.config .btnRequestType.active {
+  background-color: rgb(50,50,50);
+
+  transform: scale(1.1);
+
+  color: white;
+
+  border: solid 2px rgb(0,0,0);
+}
 .alert {
   padding: 15px;
   margin-bottom: 20px;

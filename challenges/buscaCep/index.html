@@ -16,6 +16,11 @@
     </div>
 
     <div class="container">
+        <h1>Selecione o método de requisição</h1>
+        <div id="selectRequestType" class="config">
+            <button class="btnRequestType" id="fetch">Fetch</button><button class="btnRequestType active" id="xmlHttpRequest">xmlHttpRequest</button>
+        </div>
+            
         <h1>Digite um CEP</h1>
         <form>
             <div class="form-group">
@@ -56,74 +61,6 @@
     </div>
 </body>
 
-<script>
-
-// infos & listeners
-let infos = (function(){
-    let lastCEP = "";
-
-    return {lastCEP}
-})();
-;(function() {
-    document.getElementById("inputCEP").addEventListener("keyup",(e) => {
-        if (validateCEP(e)) updateCEPinfo(e);
-    })
-})();
-
-// cep handlers;
-
-function validateCEP(event) {
-    let cep = event.target.value;    
-        cep = cep.replace(/[\s-]/g, "");
-
-    if (cep.length === 8 && parseInt(cep) !== infos.lastCEP && !isNaN(cep)) return parseInt(cep);
-    
-    return false;
-}
-function requestCEP(cep,{method,url,data}){
-    if (!method || !url) throw new Error("xhr request info (method or url) needs to be specified");
-    
-    infos.lastCEP = cep;
-
-    return new Promise(function (resolve,reject) {
-        url += `${cep}/json`;
-        
-        let xhr = new XMLHttpRequest();
-            xhr.open(method,url);
-            xhr.setRequestHeader("Content-Type","application/json;charset=UTF-8")
-            xhr.send(data);
-            xhr.onreadystatechange = function handleProcess() {
-                if (xhr.status < 400 && xhr.readyState === 4) {
-                    let json = JSON.parse(xhr.responseText);
-                    resolve(json);
-                }
-                if (xhr.status > 399 && xhr.readyState === 4) {
-                    reject(new Error("api request failed"));
-                }
-            };
-    })
-}
-function updateCEPinfo(event) {
-    requestCEP(
-        validateCEP(event),
-        {
-        method: "GET",
-        url: "https://viacep.com.br/ws/",
-        data: null
-        }
-    )
-    .then((cepInfo) => {
-        if (cepInfo.erro) throw new Error("Cep not found");
-        return cepInfo;
-    })
-    .then((cepInfo) => {
-        [...document.querySelectorAll("input")].forEach((input) => {
-            if (!cepInfo[input.id.slice(5).toLowerCase()]) return;
-            input.value = cepInfo[input.id.slice(5).toLowerCase()];
-        })
-    })
-    .catch((e) => {throw new Error(e)});
-}
-</script>
+<script defer type="module" src="js/controller.js"></script>
 
 </html>
