@@ -1,25 +1,8 @@
-// infos
-let infos = (function(){
-    let lastCEP = "";
+import { validateCEP } from "./controller.js";
 
-    return {lastCEP}
-})();
-
-// cep handlers;
-
-function validateCEP(event) {
-    let cep = event.target.value;    
-        cep = cep.replace(/[\s-]/g, "");
-
-    if (cep.length === 8 && parseInt(cep) !== infos.lastCEP && !isNaN(cep)) return parseInt(cep);
-    
-    return false;
-}
 function requestPromise(cep,{method,url,data}){
     if (!method || !url) throw new Error("xhr request info (method or url) needs to be specified");
     
-    infos.lastCEP = cep;
-
     return new Promise(function (resolve,reject) {
         url += `${cep}/json`;
         
@@ -39,7 +22,7 @@ function requestPromise(cep,{method,url,data}){
     })
 }
 function requestCEPinfo(event) {
-    requestPromise(
+    return requestPromise(
         validateCEP(event),
         {
         method: "GET",
@@ -47,17 +30,6 @@ function requestCEPinfo(event) {
         data: null
         }
     )
-    .then((cepInfo) => {
-        if (cepInfo.erro) throw new Error("Cep not found");
-        return cepInfo;
-    })
-    .then((cepInfo) => {
-        [...document.querySelectorAll("input")].forEach((input) => {    
-            if (!cepInfo[input.id.slice(5).toLowerCase()]) return;    
-            input.value = cepInfo[input.id.slice(5).toLowerCase()];
-        })
-    })
-    .catch((e) => {throw new Error(e)});
 }
 
-export {validateCEP, requestCEPinfo}
+export { requestCEPinfo };
