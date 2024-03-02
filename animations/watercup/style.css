@@ -1,0 +1,174 @@
+@charset "UTF-8";
+
+body {
+    display: column;
+    align-items: center;
+    justify-content: center;
+
+    min-height: 100vh;
+    min-width: 100vw;
+    padding: 0px;
+
+    margin: 0px;
+}
+.content {
+    box-sizing: border-box;
+        padding: 20px;
+
+    height: 100vh;
+}
+.content .title {
+    width: 100%;
+
+    font-family: Verdana;
+    text-align: center;
+
+    margin: 20px auto;
+}
+.square {
+    display: grid;
+    align-items: center;
+
+    background: conic-gradient(from 0deg, white 45%, rgb(0,0,0) 45% 60%, white 60%);
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+
+    animation: loading-circle 1000ms ease-in-out forwards infinite;
+
+    margin: 0px auto;
+}
+.smallSquare {
+    background-color: white;
+    width: 85%;
+    height: 85%;
+    border-radius: 50%;
+
+    margin: 0px auto;
+}
+.lines {
+    background-color: rgb(20,20,20);
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+        padding: 20px;
+    border-radius: 1rem;
+
+    margin: 20px 0px;
+}
+.line {
+    position: relative;
+    top: 0px;
+    left: 0px;
+
+    background-color: whitesmoke;
+    width: 10%;
+    height: 10px;
+
+    animation: line-move 1000ms ease-in-out forwards infinite;
+
+    margin: 10px 0px;
+}
+.content .line:nth-of-type(1) {
+    animation-delay: 0ms;
+}
+.content .line:nth-of-type(2) {
+    animation-delay: 50ms;
+}
+.content .line:nth-of-type(3) {
+    animation-delay: 100ms;
+}
+.cupHolder {
+    display: flex;
+    align-items: center;
+    
+    width: 100%;
+}
+.cupHolder .cup {
+    position: relative;
+
+    background-color: rgba(170,170,170,1);
+    border-radius: 0% 0% 40px 40px;
+    width: 250px;
+    height: 300px;
+
+    flex: 0 0 basis;
+
+    margin-right: 70px;
+}
+.cupHolder .cup .cuphandle {
+    position: absolute;
+    top: 30px;
+    right: -50px;
+
+    background-color: rgba(170,170,170,1);
+    width: 50px;
+    height: 200px;
+    border-radius: 0px 20px 20px 0px;
+}
+.cupHolder .cup .inner_cuphandle {
+    position: relative;
+    top: 10%;
+
+    background-color: white;
+    width: 65%;
+    height: 80%;
+    border-radius: 0px 14px 14px 0px;
+}
+.cupHolder .cup .inner_cup {
+    background-color: white;
+    border-radius: 0% 0% 30px 30px;
+    width: 220px;
+    height: 280px;
+
+    overflow: hidden;
+    
+    margin: 0px auto;
+}
+.cupHolder .cup .inner_cup .movingwater {
+    position: relative;
+    bottom: -230px;
+    left: 0px;
+    
+    background-image: url("https://priteshgupta.com/demos/fill/waves.png");
+    background-position: 0% 0%;
+    height: 100%;
+    
+    transition: bottom 400ms linear;
+}
+.cupHolder:hover .cup .inner_cup .movingwater {
+    bottom: 0px;
+
+    animation: moving-water 20s linear forwards infinite;
+}
+.cupHolder .description {
+    box-sizing: border-box;
+        padding: 20px 40px;
+    border-radius: 2rem;
+
+    font-family: Arial;
+    font-size: 20px;
+    font-weight: 700;
+    text-align: justify;
+
+    flex: 1 0 200px;
+}
+@keyframes moving-water {
+    100% {
+        background-position: 1000% 0%;
+    }
+}
+@keyframes loading-circle {
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+@keyframes line-move {
+    50% {
+        left: 90%;
+    }
+    100% {
+        left: 0%;
+    }
+}
